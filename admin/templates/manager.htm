@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$lang.home}{if $ur_here} - {$ur_here} {/if}</title>
+<meta name="Copyright" content="Douco Design." />
+<link href="templates/public.css" rel="stylesheet" type="text/css">
+{include file="javascript.htm"}
+</head>
+<body>
+<div id="dcWrap">
+ {include file="header.htm"}
+ <div id="dcLeft">{include file="menu.htm"}</div>
+ <div id="dcMain">
+   {include file="ur_here.htm"}
+   <div id="mainBox">
+    <h3><!-- {if $rec neq 'manager_log'} 管理员列表 --><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a><!-- {/if} -->{$ur_here}</h3>
+    <!-- {if $rec eq 'default'} 管理员列表 -->
+    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+     <tr>
+      <th width="30" align="center">{$lang.record_id}</th>
+      <th align="left">{$lang.manager_username}</th>
+      <th align="center">{$lang.manager_add_time}</th>
+      <th align="center">{$lang.manager_last_login}</th>
+      <th align="center">{$lang.handler}</th>
+     </tr>
+     <!-- {foreach from=$manager_list item=manager_list} -->
+     <tr>
+      <td align="center">{$manager_list.user_id}</td>
+      <td>{$manager_list.user_name}</td>
+      <td align="center">{$manager_list.add_time}</td>
+      <td align="center">{$manager_list.last_login}</td>
+      <td align="center"><a href="manager.php?rec=edit&id={$manager_list.user_id}">{$lang.edit}</a> | <a href="manager.php?rec=del&id={$manager_list.user_id}">{$lang.del}</a></td>
+     </tr>
+     <!-- {/foreach} -->
+    </table>
+    <!-- {/if} -->
+    <!-- {if $rec eq 'add'} 管理员添加 -->
+    <form action="manager.php?rec=insert" method="post">
+     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+      <tr>
+       <td width="100" align="right">{$lang.manager_username}</td>
+       <td>
+        <input type="text" name="user_name" size="40" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">{$lang.manager_password}</td>
+       <td>
+        <input type="password" name="password" size="40" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">{$lang.manager_password_confirm}</td>
+       <td>
+        <input type="password" name="password_confirm" size="40" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td></td>
+       <td>
+        <input type="hidden" name="token" value="{$token}" />
+        <input type="submit" name="submit" class="btn" value="{$lang.btn_submit}" />
+       </td>
+      </tr>
+     </table>
+    </form>
+    <!-- {/if} -->
+    <!-- {if $rec eq 'edit'} 管理员编辑 -->
+    <form action="manager.php?rec=update" method="post">
+     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+      <tr>
+       <td width="100" align="right">{$lang.manager_username}</td>
+       <td>
+        <input type="text" name="user_name" value="{$manager_info.user_name}" size="40" class="inpMain" {if $user.action_list neq 'ALL'}readonly="true"{/if}/>
+       </td>
+      </tr>
+      <!-- {if $if_check} -->
+      <tr>
+       <td align="right">{$lang.manager_old_password}</td>
+       <td>
+        <input type="password" name="old_password" size="40" class="inpMain" />
+       </td>
+      </tr>
+      <!-- {/if} -->
+      <tr>
+       <td align="right">{$lang.manager_new_password}</td>
+       <td>
+        <input type="password" name="password" size="40" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">{$lang.manager_new_password_confirm}</td>
+       <td>
+        <input type="password" name="password_confirm" size="40" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td></td>
+       <td>
+        <input type="hidden" name="token" value="{$token}" />
+        <input type="hidden" name="id" value="{$manager_info.user_id}" />
+        <input type="submit" name="submit" class="btn" value="{$lang.btn_submit}" />
+       </td>
+      </tr>
+     </table>
+    </form>
+    <!-- {/if} -->
+    <!-- {if $rec eq 'manager_log'} 操作日志 -->
+    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+     <tr>
+      <th width="30" align="center">{$lang.record_id}</th>
+      <th width="100" align="left">{$lang.manager_log_create_time}</th>
+      <th width="100" align="center">{$lang.manager_log_user_id}</th>
+      <th align="left">{$lang.manager_log_action}</th>
+      <th width="100" align="center">{$lang.manager_log_ip}</th>
+     </tr>
+     <!-- {foreach from=$log_list item=log_list} -->
+     <tr>
+      <td align="center">{$log_list.id}</td>
+      <td>{$log_list.create_time}</td>
+      <td align="center">{$log_list.user_name}</td>
+      <td align="left">{$log_list.action}</td>
+      <td align="center">{$log_list.ip}</td>
+     </tr>
+     <!-- {/foreach} -->
+    </table>
+    {include file="pager.htm"}
+    <!-- {/if} -->
+   </div>
+ </div>
+ {include file="footer.htm"}
+ </div>
+</body>
+</html>

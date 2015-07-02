@@ -1,0 +1,1115 @@
+/*
+Template Name: default
+Version: 1.0
+Author: DouCo Design
+Author URI: http://www.douco.com/
+*/
+
+/* 全局通用
+----------------------------------------------- */
+body {
+ font-family: Microsoft Yahei, \5FAE\8F6F\96C5\9ED1, \5b8b\4f53, Arial, Lucida, Verdana, Helvetica, sans-serif;
+ color: #555;
+ background-color: #F4F4F4;
+}
+body, button, input, textarea {
+ font-size: 12px;
+ line-height: 1.531;
+ outline: none;
+ margin: 0;
+ padding: 0;
+ border: 0;
+}
+p, ul, ol, dl, dt, dd, form, blockquote {
+ margin: 0;
+ padding: 0;
+}
+ul, ol {
+ list-style: none;
+}
+h1, h2, h3, h4, h5, h6 {
+ font-size: 12px;
+ margin: 0;
+ padding: 0;
+}
+em, b, i {
+ font-style: normal;
+ font-weight: normal;
+}
+img {
+ border: 0;
+}
+a {
+ text-decoration: none;
+ color: #333333;
+}
+a:hover {
+ text-decoration: underline;
+ color: #C70D0E;
+}
+input, img, select {
+ vertical-align: middle;
+}
+.clear {
+ clear: both;
+ height: 0;
+ line-height: 0;
+ font-size: 0;
+}
+.clearfix {
+ overflow: hidden;
+ zoom: 1;
+}
+.none {
+ display: none;
+}
+#captcha {
+ cursor: pointer;
+}
+.more {
+ float: right;
+ padding-right: 8px;
+ font-size: 12px;
+ font-weight: normal;
+ text-transform: uppercase;
+}
+.more a {
+ color: #999;
+}
+.more a:hover {
+ text-decoration: underline;
+}
+/* 主体框架
+----------------------------------------------- */
+#wrapper {
+}
+#wrapper .wrap {
+ width: 980px;
+ margin: 0px auto;
+}
+#wrapper .mb {
+ margin-bottom: 50px;
+}
+/* -- index -- */
+#indexLeft {
+ float: left;
+ width: 600px;
+}
+#indexRight {
+ float: right;
+ width: 360px;
+ text-align: left;
+}
+/* -- page -- */
+#pageLeft {
+ float: left;
+ width: 180px;
+ margin-right: 20px;
+}
+#pageIn {
+ float: left;
+ width: 780px;
+ overflow: hidden;
+}
+/* 头部导航
+----------------------------------------------- */
+/* -- top -- */
+#top {
+ background-color: #EEEEEE;
+ height: 30px;
+ border-bottom: 1px solid #D8D8D8;
+ text-align: right;
+ color: #CCC;
+}
+/* topNav */
+#top .topNav {
+ position: relative;
+ z-index: 1000;
+ height: 30px;
+ float: right;
+}
+#top .topNav li {
+ border: 1px solid #EEEEEE;
+ border-bottom: 0;
+ float: left;
+ zoom: 1;
+ text-align: center;
+}
+#top .topNav li s {
+ top: 9px;
+ left: 0;
+ width: 0;
+ height: 12px;
+ border-left: 1px solid #DDD;
+ overflow: hidden;
+}
+#top .topNav li a {
+ padding: 0 12px;
+ height: 28px;
+ line-height: 28px;
+ color: #555;
+}
+#top .topNav li.hover {
+ position: relative;
+ background: #FFFFFF;
+ border: 1px solid #DDDDDD;
+ border-bottom: 0;
+}
+#top .topNav li.hover s {
+ border-left: 1px solid #FFF;
+}
+#top .topNav ul {
+ background: #FFFFFF;
+ border: 1px solid #DDDDDD;
+ border-top: 0;
+ width: 100%;
+ display: none;
+ position: absolute;
+ top: 100%;
+ left: -1px;
+ padding-bottom: 4px;
+}
+#top .topNav ul li {
+ float: none;
+}
+#top .topNav li.hover ul li {
+ border: none;
+}
+#top .topNav li.hover ul li a {
+ height: 25px;
+ line-height: 25px;
+}
+/* -- header -- */
+#header {
+ min-height: 80px;
+}
+#header .logo {
+ padding: 14px 0;
+ float: left;
+}
+#header .searchBox {
+ float: right;
+}
+#header .searchBox {
+ margin: 30px 10px 0 0;
+}
+#header .searchBox .keyword {
+ width: 210px;
+}
+/* -- mainNav -- */
+#mainNav {
+ margin-bottom: 10px;
+ height: 35px;
+ font-size: 14px;
+}
+/* LEVEL ONE */
+#mainNav ul.wrap {
+ background: #E0E0E0 url(images/main_nav_right.gif) no-repeat right top;
+ position: relative;
+ z-index: 1000;
+}
+#mainNav ul li {
+ background-color: #E0E0E0;
+ float: left;
+ zoom: 1;
+}
+#mainNav ul li a {
+ display: block;
+ width: 101px;
+ padding: 0 12px;
+ text-align: center;
+ border-right: 1px solid #F4F4F4;
+ height: 35px;
+ line-height: 35px;
+ color: #000000;
+ text-decoration: none;
+}
+#mainNav ul li.hover, #mainNav ul li.cur {
+ background: #19B4EA;
+ position: relative;
+}
+#mainNav ul li.hover a, #mainNav ul li.cur a {
+ color: #FFF;
+}
+#mainNav ul li .first {
+ background: #E0E0E0 url(images/main_nav_left.gif) no-repeat left top;
+ width: 74px;
+}
+#mainNav ul li.hover .first, #mainNav ul li.cur .first {
+ background: #19B4EA url(images/main_nav_left.gif) no-repeat left bottom;
+}
+#mainNav ul li .last {
+ background: #E0E0E0 url(images/main_nav_right.gif) no-repeat right top;
+ margin-right: -1px;
+}
+#mainNav ul li.hover .last, #mainNav ul li.cur .last {
+ background: #19B4EA url(images/main_nav_right.gif) no-repeat right bottom;
+}
+/* LEVEL TWO */
+#mainNav ul ul {
+ min-width: 125px;
+ _width: 125px;
+ display: none;
+ position: absolute;
+ top: 100%;
+ left: 0;
+ border-top: 1px solid white;
+ background: #E0E0E0;
+}
+#mainNav ul ul li {
+ font-weight: normal;
+ background: #E0E0E0;
+ float: none;
+}
+#mainNav ul li.hover ul li a {
+ color: #24313C;
+ border-right: none;
+ display: inline-block;
+}
+#mainNav ul li.hover ul li.hover a {
+ color: #FFF;
+}
+#mainNav ul li.hover ul a.parent {
+ background: url(images/icon_red.gif) no-repeat 100px 50%;
+}
+/* LEVEL THREE */
+#mainNav ul ul ul {
+ left: 100%;
+ top: 0;
+ border-top: 0;
+ _border-top: 1px;
+}
+#mainNav ul li.hover ul li.hover ul li a {
+ color: #24313C;
+}
+#mainNav ul li.hover ul li.hover ul li.hover a {
+ color: #FFF;
+}
+/* 首页样式
+----------------------------------------------- */
+/* -- 幻灯 -- */
+.slideShow {
+ position: relative;
+ margin: 0 auto 10px;
+ padding: 0;
+ *zoom: 1;
+}
+.slideShow .slides a {
+ display: block;
+ height: 350px;
+ background-repeat: no-repeat;
+ background-position: center center;
+}
+.slideShow .slideBox {
+ background: #fff;
+ /*fix other elements on the page moving (on Chrome)*/
+ -webkit-transform: translatez(0);
+ -moz-transform: translatez(0);
+ -ms-transform: translatez(0);
+ -o-transform: translatez(0);
+ transform: translatez(0);
+}
+/* -- slideLoading -- */
+.slideShow .slideLoading {
+ min-height: 50px;
+ background: url(images/slide_loader.gif) center center no-repeat #fff;
+ height: 100%;
+ width: 100%;
+ position: absolute;
+ top: 0;
+ left: 0;
+ z-index: 2000;
+}
+/* -- previous 和 next 按钮 -- */
+.slideShow .arrowBox a {
+ z-index: 50;
+ font-family: \5b8b\4f53, sans-serif;
+ position: absolute;
+ display: block;
+ margin-bottom: -20px;
+ width: 40px;
+ height: 40px;
+ bottom: 50%;
+ line-height: 40px;
+ text-decoration: none;
+ text-align: center;
+ color: #fff;
+ font-size: 2em;
+ background-color: #333;
+ background-color: rgba(50,50,50,.3);
+}
+.slideShow .arrowBox a.disabled {
+ display: none;
+}
+.slideShow .arrowBox .arrowPrev {
+ left: 20px;
+}
+.slideShow .arrowBox .arrowNext {
+ right: 20px;
+}
+.slideShow .arrowBox a:hover {
+ background-color: rgba(50,50,50,.6);
+}
+/* -- controlBox -- */
+.slideShow .controlBox {
+ z-index: 30;
+ position: absolute;
+ bottom: 10px;
+ width: 100%;
+ text-align: center;
+ font-size: .85em;
+ font-family: Arial;
+ font-weight: bold;
+ color: #666;
+}
+.slideShow .controlBox .control {
+ display: inline-block;
+ *zoom: 1;
+ *display: inline;
+}
+.slideShow .controlBox.controlDefault a {
+ background: url(images/inactive.png) no-repeat 50% 50%;
+ text-indent: -9999px;
+ overflow:hidden;
+ width: 20px;
+ height: 30px;
+ clear: none;
+ display: block;
+}
+.slideShow .controlBox.controlDefault a:hover, .slideShow .controlBox.controlDefault a.active {
+ background: url(images/active.png) no-repeat 50% 50%;
+}
+/* -- slideTitle -- */
+.slideShow .slideTitle {
+ z-index: 20;
+ position: absolute;
+ bottom: 0;
+ left: 0;
+ background: #666\9;
+ background: rgba(80, 80, 80, 0.75);
+ width: 100%;
+}
+.slideShow .slideTitle span {
+ color: #fff;
+ display: block;
+ font-size: .85em;
+ padding: 15px 10px;
+}
+/* -- sileThumb -- */
+.slideShow .sileThumb {
+ z-index: 30;
+ text-align: center;
+ position: absolute;
+ bottom: 8px;
+ right: 8px;
+}
+.slideShow .sileThumb a {
+ margin: 0 3px;
+}
+.slideShow .sileThumb a img {
+ border: solid #B0B0B0 1px;
+}
+.slideShow .sileThumb a.active img {
+ border: solid #19B4EA 1px;
+}
+/* 通用结构	
+----------------------------------------------- */
+/* -- form -- */
+.btn {
+ display: inline-block;
+ background-color: #0072C6;
+ color: #EEE;
+ padding: 6px 25px;
+ text-transform: capitalize;
+ cursor: pointer;
+ font-weight: bold;
+}
+.btn:hover {
+ text-decoration: none;
+ color: #FFFFFF;
+ background-color: #007AD5;
+}
+.btnGray {
+ display: inline-block;
+ background-color: #CCC;
+ border: 0;
+ color: #333;
+ padding: 6px 15px;
+ text-transform: capitalize;
+ cursor: pointer;
+ font-weight: bold;
+}
+/* -- input -- */
+.textInput {
+ padding: 0 4px;
+ height: 28px;
+ border: 1px solid #DDDDDD;
+}
+.textArea {
+ padding: 4px;
+ border: 1px solid #DDDDDD;
+}
+/* -- style -- */
+.price {
+ color: #CC0000;
+}
+/* -- incBox -- */
+.incBox {
+ margin-bottom: 15px;
+}
+.incBox h3 {
+ height: 35px;
+ line-height: 35px;
+ color: #7A7F81;
+ font-weight: bold;
+ font-size: 14px;
+ border-bottom: 1px solid #CBD1D3;
+}
+.incBox h3 a {
+ color: #7A7F81;
+}
+/* -- tree -- */
+.treeBox {
+ margin-bottom: 15px;
+}
+.treeBox h3 {
+ height: 35px;
+ line-height: 35px;
+ color: #7A7F81;
+ font-weight: bold;
+ font-size: 14px;
+ border-bottom: 1px solid #CBD1D3;
+}
+.treeBox li {
+ border-left: 4px solid #F4F4F4;
+ line-height: 15px;
+ margin-top: 15px;
+ padding-left: 10px;
+}
+.treeBox li.cur {
+ border-left: 4px solid #19B4EA;
+}
+.treeBox li a {
+ color: #7A7F81;
+}
+.treeBox .searchBox {
+ margin:20px 0;
+}
+.treeBox .searchBox .keyword {
+ width: 136px;
+}
+/* -- searchBox -- */
+.searchBox {
+ border: 1px solid #DDDDDD;
+ background-color: #FFF;
+ height: 28px;
+ padding-left: 10px;
+}
+.searchBox {
+ position: relative;
+ white-space: normal
+}
+.searchBox label {
+ height: 0;
+ line-height: 0;
+ overflow: hidden;
+ width: 0;
+ position: absolute;
+ font-size: 0;
+ z-index: -1;
+ outline: 0
+}
+.searchBox .keyword {
+ color: #CCCCCC;
+}
+.searchBox .keyword:focus {
+ color: #555
+}
+.searchBox .keyword::-webkit-input-placeholder {
+ color:#CCCCCC;
+}
+.searchBox .keyword:focus:-moz-placeholder, .searchBox .keyword:focus::-moz-placeholder {
+color:transparent!important
+}
+.searchBox .keyword:focus::-webkit-input-placeholder {
+color:transparent!important
+}
+.searchBox .btnSearch {
+ background: #E0E0E0 url(images/btn_search.gif) no-repeat;
+ width: 28px;
+ height: 28px;
+ text-indent: -999px;
+ overflow:hidden;
+ cursor: pointer;
+}
+/* -- 上一页下一页 -- */
+.lift {
+ margin-top:60px;
+ color:#999;
+}
+.lift a {
+ color:#999;
+}
+.lift span {
+ margin-right:15px;
+}
+/* 库项目样式
+----------------------------------------------- */
+/* -- urHere -- */
+.urHere {
+ height: 35px;
+ line-height: 35px;
+ color: #999999;
+ border-bottom: 1px solid #CBD1D3;
+}
+.urHere a {
+ color: #999999;
+}
+.urHere b {
+ margin: 0 8px;
+}
+/* -- recommendProduct -- */
+.recommendProduct {
+ padding-top: 10px;
+}
+.recommendProduct li {
+ float: left;
+ width: 137px;
+ height: 200px;
+ margin-right: 17px;
+ text-align: center;
+}
+.recommendProduct li.clearBorder {
+ margin-right: 0;
+}
+.recommendProduct .img {
+ border: 1px solid #E4E4E4;
+ margin-bottom: 8px;
+}
+/* -- about -- */
+.about {
+ padding-top: 13px;
+}
+.about p {
+ float: left;
+ width: 120px;
+ height: 154px;
+}
+.about dl {
+ float: right;
+ width: 465px;
+ height: 154px;
+}
+.about dl dt {
+ display: block;
+ font-size: 16px;
+ font-weight: bold;
+ color: #313131;
+ padding: 5px 0;
+}
+.about dl dd {
+ line-height: 200%;
+ color: #999999;
+ word-wrap: break-word;
+ word-break: normal;
+}
+.about .aboutBtn {
+ display: block;
+ text-decoration: underline;
+ color: #CC0000;
+ font-weight: bold;
+ margin-top: 12px;
+}
+/* -- recommendArticle -- */
+.recommendArticle li {
+ background: url(images/icon_red.gif) no-repeat left 50%;
+ border-bottom: 1px dotted #D1D1D1;
+ line-height: 38px;
+ padding-left: 15px;
+}
+.recommendArticle li b {
+ float: right;
+ color: #999999;
+}
+.recommendArticle li.last {
+ border-bottom: 0;
+}
+/* -- contact -- */
+.contact {
+ border: 1px solid #CBD1D3;
+ background-color: #EFEFEF;
+ padding: 15px;
+}
+.contact h3 {
+ border-bottom: 1px solid #CBD1D3;
+ padding-bottom: 10px;
+ font-size: 14px;
+ color: #7A7F81;
+}
+.contact .box {
+ padding:15px 0 0 3px;
+}
+.contact dl {
+ margin-bottom: 8px;
+ zoom:1;
+ overflow:hidden;
+}
+.contact dt {
+ float:left;
+ background: url(images/icon_contact.gif) no-repeat 0 0;
+ width:30px;
+ height: 30px;
+ margin-right:17px;
+}
+.contact dt.tel {
+ background-position: 0 -30px;
+}
+.contact dt.fax {
+ background-position: 0 -60px;
+}
+.contact dt.url {
+ background-position: 0 -90px;
+}
+.contact dt.email {
+ background-position: 0 -120px;
+}
+.contact dd {
+ float:left;
+ width:278px;
+ color: #7A7F81;
+ line-height:30px;
+}
+/* page
+----------------------------------------------- */
+#page {
+ padding: 20px 0;
+}
+#page h1 {
+ color: #333333;
+ font-size: 18px;
+ font-weight: bold;
+}
+#page .info {
+ padding: 2px 0 20px 0;
+ color: #999999;
+ font-size: 13px;
+}
+#page .content {
+ color: #666666;
+ line-height: 200%;
+ padding-top: 10px;
+}
+/* product_category
+----------------------------------------------- */
+.productList {
+ padding-top: 20px;
+ color: #999999;
+}
+.productList dl {
+ float: left;
+ width: 370px;
+ height: 160px;
+ margin: 0 20px 30px 0;
+}
+.productList dl.last {
+ margin-right: 0;
+}
+.productList dt {
+ float: left;
+ width: 160px;
+}
+.productList dd {
+ float: left;
+ width: 195px;
+ padding: 15px 0 0 15px;
+}
+.productList dt img {
+ border: 1px solid #EEEEEE;
+}
+.productList .name {
+ height: 18px;
+ overflow: hidden;
+}
+.productList .name a {
+ color: #333333;
+ font-weight: bold;
+}
+.productList .brief {
+ color: #999999;
+ padding-top: 8px;
+ height: 60px;
+}
+.productList .price {
+ padding-bottom: 10px;
+}
+/* product
+----------------------------------------------- */
+#product {
+ padding: 15px 0;
+}
+#product .productImg {
+ float: left;
+ width: 300px;
+}
+#product .productInfo {
+ float: left;
+ width: 465px;
+ padding: 10px 0 0 15px;
+ line-height: 200%;
+}
+#product .productInfo h1 {
+ font-size: 18px;
+}
+#product .productInfo ul {
+ padding-top: 10px;
+}
+#product .productInfo .productPrice {
+ margin-bottom: 5px;
+}
+#product .productInfo .productPrice .price {
+ font-family: Arial;
+ font-size: 20px;
+ font-weight: bold;
+}
+#product .productInfo .btnAsk {
+ margin-top: 50px;
+ zoom: 1;
+ overflow: hidden;
+}
+#product .productInfo .btnAsk dt {
+ float: left;
+ width: 88px;
+ height: 39px;
+ line-height: 39px;
+ text-align: right;
+ padding-right: 3px;
+ margin-right: 6px;
+ background-color: #E0E0E0;
+ color: #333;
+ font-weight: bold;
+}
+#product .productInfo .btnAsk dd {
+ float: left;
+ width: 300px;
+}
+#product .productContent {
+ padding: 15px 0;
+}
+#product .productContent h3 {
+ height: 35px;
+ line-height: 35px;
+ color: #7A7F81;
+ font-weight: bold;
+ font-size: 14px;
+ border-bottom: 1px solid #CBD1D3;
+}
+#product .productContent ul {
+ padding: 15px 0;
+ color: #666;
+ line-height: 200%;
+}
+/* article_category
+----------------------------------------------- */
+#articleList dl {
+ border-bottom: 1px dotted #D1D1D1;
+ padding: 20px 0;
+}
+#articleList dl.last {
+ border-bottom: 0;
+}
+#articleList dt {
+ width: 620px;
+ background: url(images/icon_red.gif) no-repeat left 50%;
+ padding-left: 15px;
+ margin-bottom: 10px;
+}
+#articleList dd {
+ color: #999999;
+ padding-left: 2px;
+ line-height: 180%;
+ zoom: 1;
+ overflow: hidden;
+}
+#articleList dd p {
+ float: left;
+}
+#articleList dd p.img {
+ margin-right: 10px;
+}
+#articleList dd p.desc {
+ width: 590px;
+}
+#articleList .numDate {
+ float: right;
+ text-align: right;
+ padding-top: 12px;
+}
+#articleList .numDate em {
+ background-color: #0072C6;
+ color: #FFF;
+ padding: 3px 4px;
+ font-size: 14px;
+ font-weight: bold;
+}
+#articleList .numDate p {
+ font-size: 16px;
+ color: #999999;
+ margin-top: 5px;
+}
+/* article
+----------------------------------------------- */
+#article {
+ padding: 20px 0;
+}
+#article h1 {
+ color: #333333;
+ font-size: 18px;
+ font-weight: bold;
+}
+#article .info {
+ padding: 2px 0 20px 0;
+ color: #999999;
+ font-size: 13px;
+}
+#article .content {
+ color: #666666;
+ line-height: 180%;
+}
+/* 留言板
+----------------------------------------------- */
+#guestBook {
+ padding: 20px 0;
+}
+#guestBook h2 {
+ color: #555;
+ font-size: 18px;
+ font-weight: bold;
+ margin-bottom: 20px;
+}
+/* bookList */
+#guestBook .bookList {
+ margin-bottom: 30px;
+ line-height: 180%;
+ font-size: 13px;
+}
+#guestBook .bookList dl {
+ margin-bottom: 15px;
+}
+#guestBook .bookList dt {
+ color: #999;
+ margin-bottom: 3px;
+}
+#guestBook .bookList dt b {
+ color: #999;
+ margin-left: 20px;
+}
+#guestBook .bookList dd {
+ color: #666;
+ overflow: hidden;
+ zoom: 1;
+}
+#guestBook .bookList dd em {
+ float: left;
+ width: 70px;
+}
+#guestBook .bookList dd span {
+ float: right;
+ width: 910px;
+ text-align: left;
+}
+#guestBook .bookList p {
+ color: #0072C6;
+ margin-top: 5px;
+ overflow: hidden;
+ zoom: 1;
+}
+#guestBook .bookList p em {
+ float: left;
+ width: 70px;
+}
+#guestBook .bookList p span {
+ float: left;
+ width: 800px;
+}
+#guestBook .bookList p b {
+ color: #999;
+ float: right;
+}
+#guestBook .bookList .pager {
+ text-align: left;
+}
+/* bookList */
+#guestBook .bookAdd {
+ line-height: 180%;
+ font-size: 13px;
+}
+#guestBook .bookAdd dl {
+ overflow: hidden;
+ zoom: 1;
+ margin-bottom: 15px;
+}
+#guestBook .bookAdd dl dt, #guestBook .bookAdd dl dd {
+ float: left;
+}
+#guestBook .bookAdd dl dt {
+ width: 70px;
+ text-align: right;
+ line-height: 30px;
+}
+#guestBook .bookAdd .vcode {
+ text-transform: uppercase;
+}
+#guestBook .bookAdd .select {
+ height: 28px;
+}
+#guestBook .bookAdd dl.cue {
+ margin: -8px 0 10px 60px;
+ color: #999;
+}
+#guestBook .bookAdd dl.submit {
+ margin: 20px 0 0 60px;
+}
+#guestBook .bookAdd dd b {
+ display: block;
+ padding: 2px 0 2px 3px;
+ border: 1px solid #fec600;
+ color: #666;
+ background-color: #fbf8e9;
+ line-height: 16px;
+}
+/* 提示信息
+----------------------------------------------- */
+#douMsg {
+ padding: 10px 0 100px 0;
+}
+#douMsg dl {
+ padding: 160px 0 200px 0;
+ text-align: center;
+ background-color: #EBEBEB;
+ border-top: 1px solid #FFFFFF;
+}
+#douMsg dt {
+ color: #0072C6;
+ font-size: 16px;
+ margin-bottom: 30px;
+ font-weight: bold;
+}
+#douMsg dd {
+ color: #666;
+}
+#douMsg dd a {
+ margin-left: 5px;
+ color: #000;
+}
+/* 分页
+----------------------------------------------- */
+.pager {
+ text-align: right;
+ padding-top: 20px;
+ color: #666;
+}
+.pager a {
+ color: #666;
+ text-decoration: underline;
+}
+/* link
+----------------------------------------------- */
+.link {
+ margin-bottom: 10px;
+}
+.link strong {
+ color: #7A7F81;
+ font-weight: bold;
+}
+.link a {
+ color: #555;
+}
+/* 在线客服
+----------------------------------------------- */
+#onlineService {
+ position: fixed;
+ _position: absolute;
+ _top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight)-380+"px");
+ top: 208px;
+ right: 0;
+ z-index: 999999;
+ display: block;
+}
+#onlineService .onlineIcon {
+ position: relative;
+ cursor: pointer;
+ background: url(images/online_service.png) no-repeat;
+ width: 34px;
+ height: 110px;
+ text-indent: -9999px;
+ overflow:hidden;
+}
+#onlineService #pop {
+ border: 3px solid #19B4EA;
+ background-color: #F2F2F2;
+ padding: 8px;
+ width: 95px;
+ min-height: 84px;
+ position: absolute;
+ right: 34px;
+ top: 0;
+ display: none;
+ z-index: 999999;
+}
+#onlineService .onlineQQ a {
+ display: block;
+ background: url(images/online_service.png) no-repeat left -160px;
+ color: #19B4EA;
+ width: 82px;
+ height: 24px;
+ line-height: 23px;
+ padding-left: 27px;
+ margin-bottom: 8px;
+}
+#onlineService .onlineQQ a:hover {
+ text-decoration: none;
+ color: #19B4EA;
+}
+#onlineService .service {
+ border-top: 1px solid #DDDDDD;
+ padding-top: 8px;
+ color: #666;
+}
+#onlineService .service a {
+ color: #666;
+}
+#onlineService .service li {
+ background: url(images/online_service.png) no-repeat left -202px;
+ padding-left: 8px;
+}
+#onlineService .goTop {
+ display: none;
+}
+#onlineService .goTop .goBtn {
+ background: #F2F2F2 url(images/online_service.png) no-repeat left -120px;
+ width: 34px;
+ height: 34px;
+ display: block;
+}
+/* footer
+----------------------------------------------- */
+#footer {
+ border-top: 1px solid #D8D8D8;
+ background-color: #EBEBEB;
+ padding: 35px 0;
+ line-height: 25px;
+ color: #999999;
+}
+#footer a {
+ color: #999999;
+}
+#footer .footNav i {
+ margin: 0 12px;
+ color: #CCC;
+}
+#footer .footNav a.first {
+ margin-left: 0;
+}
+#footer .copyRight {
+ font-family: Arial, Lucida, Verdana, Helvetica, sans-serif;
+}

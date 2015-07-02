@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- {if $url} -->
+<meta http-equiv="refresh" content="{$time}; URL={$url}" />
+<!-- {/if} -->
+<title>{$lang.home}{if $ur_here} - {$lang.msg} {/if}</title>
+<meta name="Copyright" content="Douco Design." />
+<link href="templates/public.css" rel="stylesheet" type="text/css">
+{include file="javascript.htm"}
+<!-- {if !$url} -->
+<script language=javascript>
+{literal}
+function go()
+{
+window.history.go(-1);
+}
+setTimeout("go()",3000);
+{/literal}
+</script>
+<!-- {/if} -->
+</head>
+<body>
+<!-- {if $out neq 'out'} -->
+<div id="dcWrap">
+ {include file="header.htm"}
+ <div id="dcLeft">{include file="menu.htm"}</div>
+ <div id="dcMain">
+  {include file="ur_here.htm"}
+  <div id="mainBox">
+   <h3>{$ur_here}</h3>
+   <div id="douMsg">
+    <h2>{$text}</h2>
+    <dl>
+     <dt>{$cue}</dt>
+     <!-- {if $check} -->
+     <p><form action="{$check}" method="post"><input name="confirm" class="btn" type="submit" value="{$lang.del_confirm}" /></form></p>
+     <!-- {/if} -->
+     <dd><a href="{if $url}{$url}{else}javascript:history.go(-1);{/if}">{$lang.dou_msg_back}</a></dd>
+    </dl>
+   </div>
+  </div>
+ </div>
+ {include file="footer.htm"}
+</div>
+<!-- {else} -->
+<div id="outMsg">
+ <h2>{$text}</h2>
+ <dl>
+  <dt>{$cue}</dt>
+  <dd><a href="{if $url}{$url}{else}javascript:history.go(-1);{/if}">{$lang.dou_msg_back}</a></dd>
+ </dl>
+</div>
+<!-- {/if} -->
+</body>
+</html>

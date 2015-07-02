@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$lang.home}{if $ur_here} - {$ur_here} {/if}</title>
+<meta name="Copyright" content="Douco Design." />
+<link href="templates/public.css" rel="stylesheet" type="text/css">
+{include file="javascript.htm"}
+</head>
+<body>
+<div id="dcWrap"> {include file="header.htm"}
+ <div id="dcLeft">{include file="menu.htm"}</div>
+ <div id="dcMain"> {include file="ur_here.htm"}
+  <div id="mainBox"> 
+   <!-- {if $rec eq 'default'} 留言列表 -->
+   <h3>{$ur_here}</h3>
+   <div id="list">
+    <form name="del" method="post" action="guestbook.php?rec=del_all">
+     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+      <tr>
+       <th width="22" align="center"><input name='chkall' type='checkbox' id='chkall' onclick='selectcheckbox(this.form)' value='check'></th>
+       <th align="left">{$lang.guestbook_title}</th>
+       <th width="60" align="center">{$lang.guestbook_name}</th>
+       <th width="80" align="center">{$lang.add_time}</th>
+       <th width="60" align="center">{$lang.if_show}</th>
+      </tr>
+      <!-- {foreach from=$book_list item=guestbook} -->
+      <tr {if $guestbook.if_read eq '0'}class="unread"{/if}>
+       <td align="center"><input type="checkbox" name="checkbox[]" value="{$guestbook.id}" /></td>
+       <td><a href="guestbook.php?rec=read&id={$guestbook.id}">{$guestbook.title}</a></td>
+       <td align="center">{$guestbook.name}</td>
+       <td align="center">{$guestbook.add_time}</td>
+       <td align="center">{$guestbook.if_show}</td>
+      </tr>
+      <!-- {/foreach} -->
+     </table>
+     <div class="action"><input name="submit" class="btn" type="submit" value="{$lang.del}" /></div>
+    </form>
+   </div>
+   <div class="clear"></div>
+   {include file="pager.htm"}
+   <!-- {/if} -->
+   <!-- {if $rec eq 'read'} 留言查看与回复 -->
+   <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+   <div id="guestBook">
+    <dl class="book">
+     <dt><a href="javascript:void(0)" onClick="dou_callback('guestbook.php?rec=show_hidden', 'id', {$guestbook.id}, 'if_show')" class="showHidden" id="if_show"><em class="{if $guestbook.if_show}d{else}h{/if}"><b>{$lang.display}</b><s>{$lang.hidden}</s></em></a>{$guestbook.title}</dt>
+     <dd>{$guestbook.content}</dd>
+     <p><b>{$lang.guestbook_name}：{$guestbook.name}</b><b>{$lang.guestbook_contact_type}（{$guestbook.contact_type}）：{$guestbook.contact}</b><b>{$lang.add_time}：{$guestbook.add_time}</b></p>
+    </dl>
+    <dl class="reply"><b>{$lang.guestbook_admin_reply}[{$reply.add_time}]：</b> {$reply.content}</dl>
+    <dl class="replySubmit">
+     <form action="guestbook.php?rec=reply" method="post">
+      <textarea name="content" cols="90" rows="5" class="textArea" id="content"></textarea>
+      <br>
+      <input type="hidden" name="id" value="{$guestbook.id}">
+      <input type="hidden" name="title" value="{$guestbook.title}">
+      <input name="submit" class="btn" type="submit" value="{$lang.guestbook_reply}" />
+     </form>
+    </dl>
+   </div>
+   <!-- {/if} --> 
+  </div>
+ </div>
+ {include file="footer.htm"} </div>
+</body>
+</html>

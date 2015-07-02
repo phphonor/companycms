@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$lang.home}{if $ur_here} - {$ur_here} {/if}</title>
+<meta name="Copyright" content="Douco Design." />
+<link href="templates/public.css" rel="stylesheet" type="text/css">
+{include file="javascript.htm"}
+<script type="text/javascript" src="images/jquery.autotextarea.js"></script>
+</head>
+<body>
+<div id="dcWrap">
+ {include file="header.htm"}
+ <div id="dcLeft">{include file="menu.htm"}</div>
+ <div id="dcMain">
+   {include file="ur_here.htm"}
+   <div id="mainBox">
+    <!-- {if $rec eq 'default'} 文章列表 -->
+    <h3><a href="{$action_link.href}" class="actionBtn add">{$action_link.text}</a>{$ur_here}</h3>
+    <div class="filter">
+    <form action="article.php" method="post">
+     <select name="cat_id">
+      <option value="0">{$lang.uncategorized}</option>
+      <!-- {foreach from=$article_category item=cate} -->
+      <!-- {if $cate.cat_id eq $cat_id} -->
+      <option value="{$cate.cat_id}" selected="selected">{$cate.mark} {$cate.cat_name}</option>
+      <!-- {else} -->
+      <option value="{$cate.cat_id}">{$cate.mark} {$cate.cat_name}</option>
+      <!-- {/if} -->
+      <!-- {/foreach} -->
+     </select>
+     <input name="keyword" type="text" class="inpMain" value="{$keyword}" size="20" />
+     <input name="submit" class="btnGray" type="submit" value="{$lang.btn_filter}" />
+    </form>
+    <span>
+    <!-- {if $if_home_sort} -->
+    <a class="btnGray" href="article.php?rec=home_sort">{$lang.home_sort_close}</a>
+    <!-- {else} -->
+    <a class="btnGray" href="article.php?rec=home_sort">{$lang.home_sort_article}</a>
+    <!-- {/if} -->
+    </span>
+    </div>
+    <!-- {if $if_home_sort} -->
+    <div class="homeSortRight">
+     <ul class="homeSortBg">
+      {$home_sort_bg}
+     </ul>
+     <ul class="homeSortList">
+      <!-- {foreach from=$home_sort name=home_sort item=article} -->
+      <!-- {if $smarty.foreach.home_sort.iteration le $site.home_display_article} -->
+      <li>
+       <em>{$article.title}</em>
+       <a href="article.php?rec=del_home_sort&id={$article.id}" title="{$lang.home_sort_cancel}">X</a>
+      </li>
+      <!-- {/if} -->
+      <!-- {/foreach} -->
+     </ul>
+    </div>
+    <!-- {/if} -->
+    <div id="list"{if $if_home_sort} class="homeSortLeft"{/if}>
+    <form name="action" method="post" action="article.php?rec=action">
+    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+     <tr>
+      <th width="22" align="center"><input name='chkall' type='checkbox' id='chkall' onclick='selectcheckbox(this.form)' value='check'></th>
+      <th width="40" align="center">{$lang.record_id}</th>
+      <th align="left">{$lang.article_name}</th>
+      <th width="150" align="center">{$lang.article_category}</th>
+      <th width="80" align="center">{$lang.add_time}</th>
+      <th width="80" align="center">{$lang.handler}</th>
+     </tr>
+     <!-- {foreach from=$article_list item=article} -->
+     <tr>
+      <td align="center"><input type="checkbox" name="checkbox[]" value="{$article.id}" /></td>
+      <td align="center">{$article.id}</td>
+      <td><a href="article.php?rec=edit&id={$article.id}">{$article.title}</a><!-- {if $article.image} --> <a href="../{$article.image}" target="_blank"><img src="images/icon_picture.png" width="16" height="16" align="absMiddle"></a><!-- {/if} --></td>
+      <td align="center"><!-- {if $article.cat_name} --><a href="article.php?id={$article.cat_id}">{$article.cat_name}</a><!-- {else} -->{$lang.uncategorized}<!-- {/if} --></td>
+      <td align="center">{$article.add_time}</td>
+      <td align="center">
+       <!-- {if $if_home_sort} -->
+       <a href="article.php?rec=set_home_sort&id={$article.id}">{$lang.home_sort_btn}</a>
+       <!-- {else} -->
+       <a href="article.php?rec=edit&id={$article.id}">{$lang.edit}</a> | <a href="article.php?rec=del&id={$article.id}">{$lang.del}</a>
+       <!-- {/if} -->
+      </td>
+     </tr>
+     <!-- {/foreach} -->
+    </table>
+    <div class="action">
+     <select name="action" onchange="douAction()">
+      <option value="0">{$lang.select}</option>
+      <option value="del_all">{$lang.del}</option>
+      <option value="category_move">{$lang.category_move}</option>
+     </select>
+     <select name="new_cat_id" style="display:none">
+      <option value="0">{$lang.uncategorized}</option>
+      <!-- {foreach from=$article_category item=cate} -->
+      <!-- {if $cate.cat_id eq $cat_id} -->
+      <option value="{$cate.cat_id}" selected="selected">{$cate.mark} {$cate.cat_name}</option>
+      <!-- {else} -->
+      <option value="{$cate.cat_id}">{$cate.mark} {$cate.cat_name}</option>
+      <!-- {/if} -->
+      <!-- {/foreach} -->
+     </select>
+     <input name="submit" class="btn" type="submit" value="{$lang.btn_execute}" />
+    </div>
+    </form>
+    </div>
+    <div class="clear"></div>
+    {include file="pager.htm"}
+    <!-- {/if} -->
+    <!-- {if $rec eq 'add' || $rec eq 'edit'} 文章添加或编辑 -->
+    <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+    <form action="article.php?rec={$form_action}" method="post" enctype="multipart/form-data">
+     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+      <tr>
+       <td width="90" align="right">{$lang.article_name}</td>
+       <td>
+        <input type="text" name="title" value="{$article.title}" size="80" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">{$lang.article_category}</td>
+       <td>
+        <select name="cat_id">
+         <option value="0">{$lang.uncategorized}</option>
+         <!-- {foreach from=$article_category item=cate} -->
+         <!-- {if $cate.cat_id eq $article.cat_id} -->
+         <option value="{$cate.cat_id}" selected="selected">{$cate.mark} {$cate.cat_name}</option>
+         <!-- {else} -->
+         <option value="{$cate.cat_id}">{$cate.mark} {$cate.cat_name}</option>
+         <!-- {/if} -->
+         <!-- {/foreach} -->
+        </select>
+       </td>
+      </tr>
+      <!-- {if $article.defined} -->
+      <tr>
+       <td align="right" valign="top">{$lang.article_defined}</td>
+       <td>
+        <textarea name="defined" id="defined" cols="20" class="textAreaAuto" style="height:{$article.defined_count}0px">{$article.defined}</textarea>
+        <script type="text/javascript">
+        {literal}
+          $("#defined").autoTextarea({maxHeight:300});
+        {/literal}
+        </script>
+        </td>
+      </tr>
+      <!-- {/if} -->
+      <tr>
+       <td align="right" valign="top">{$lang.article_content}</td>
+       <td>
+        <!-- umeditor -->
+        <link href="include/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+        <script type="text/javascript" charset="utf-8" src="include/umeditor/umeditor.config.js"></script>
+        <script type="text/javascript" charset="utf-8" src="include/umeditor/umeditor.min.js"></script>
+        <script type="text/javascript" src="include/umeditor/lang/zh-cn/zh-cn.js"></script>
+        <script type="text/plain" id="content" name="content" style="width:780px;height:300px;">{$article.content}</script>
+        <script type="text/javascript">
+            //实例化编辑器
+            var um = UM.getEditor('content');
+        </script>
+        <!-- /umeditor -->
+       </td>
+      </tr>
+      <tr>
+       <td align="right">{$lang.thumb}</td>
+       <td>
+        <input type="file" name="image" size="38" class="inpFlie" />
+        {if $article.image}<a href="../{$article.image}" target="_blank"><img src="images/yes.gif"></a>{else}<img src="images/no.gif">{/if}</td>
+      </tr>
+      <tr>
+       <td align="right">{$lang.keywords}</td>
+       <td>
+        <input type="text" name="keywords" value="{$article.keywords}" size="50" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">{$lang.description}</td>
+       <td>
+        <input type="text" name="description" value="{$article.description}" size="50" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td></td>
+       <td>
+        <input type="hidden" name="token" value="{$token}" />
+        <input type="hidden" name="image" value="{$article.image}">
+        <input type="hidden" name="id" value="{$article.id}">
+        <input name="submit" class="btn" type="submit" value="{$lang.btn_submit}" />
+       </td>
+      </tr>
+     </table>
+    </form>
+    <!-- {/if} -->
+   </div>
+ </div>
+ {include file="footer.htm"}
+ </div>
+	<script language="JavaScript">
+ {literal}
+	onload = function()
+	{
+			document.forms['action'].reset();
+	}
+
+	function douAction()
+	{
+					var frm = document.forms['action'];
+
+					frm.elements['new_cat_id'].style.display = frm.elements['action'].value == 'category_move' ? '' : 'none';
+	}
+ {/literal}
+ </script>
+</body>
+</html>

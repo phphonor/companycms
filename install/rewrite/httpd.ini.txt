@@ -1,0 +1,14 @@
+[ISAPI_Rewrite]
+
+# 3600 = 1 hour
+CacheClockRate 3600
+
+RepeatLimit 32
+
+# main
+RewriteRule ^(.*)/index.html$    $1/index\.php [L]
+RewriteRule ^(.*)/sitemap.xml$    $1/sitemap\.php [L]
+RewriteRule ^(.*)/(404|301).html$    $1/$2\.html [L]
+
+RewriteRule ^(.*)/((product|news|guestbook|catalog)([a-z0-9\-\_\/]*)(.html)*)$    $1/include/route\.php\?route=$2 [L]
+RewriteRule ^(.*)/([a-z0-9-]+.html)$    $1/include/route\.php\?route=$2 [L]

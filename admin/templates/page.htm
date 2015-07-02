@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$lang.home}{if $ur_here} - {$ur_here} {/if}</title>
+<meta name="Copyright" content="Douco Design." />
+<link href="templates/public.css" rel="stylesheet" type="text/css">
+{include file="javascript.htm"}
+</head>
+<body>
+<div id="dcWrap">
+ {include file="header.htm"}
+ <div id="dcLeft">{include file="menu.htm"}</div>
+ <div id="dcMain">
+   {include file="ur_here.htm"}
+   <div id="mainBox">
+    <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+    <!-- {if $rec eq 'default'} 单页面列表 -->
+    <div class="page">
+     <!-- {foreach from=$page_list item=page_list} -->
+      <dl{if $page_list.level gt 0} class="child{$page_list.level}"{/if}>
+        <dt><strong>{$page_list.page_name}</strong><p>{$page_list.unique_id}</p></dt>
+        <dd><a href="page.php?rec=edit&id={$page_list.id}">{$lang.edit}</a> | <a href="page.php?rec=del&id={$page_list.id}">{$lang.del}</a></dd>
+      </dl>
+     <!-- {/foreach} -->
+    </div>
+    <!-- {/if} -->
+    <!-- {if $rec eq 'add' || $rec eq 'edit'} 单页面添加或编辑 -->
+    <form action="page.php?rec={$form_action}" method="post">
+     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+      <tr>
+       <td width="80" align="right">{$lang.page_name}</td>
+       <td>
+        <input type="text" name="page_name" value="{$page.page_name}" size="40" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">{$lang.unique}</td>
+       <td>
+        <input type="text" name="unique_id" value="{$page.unique_id}" size="40" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">{$lang.parent}</td>
+       <td>
+        <select name="parent_id">
+         <option value="0">{$lang.empty}</option>
+									<!-- {foreach from=$page_list item=list} -->
+         <!-- {if $list.id eq $page.parent_id} -->
+         <option value="{$list.id}" selected="selected">{$list.mark} {$list.page_name}</option>
+         <!-- {else} -->
+         <option value="{$list.id}">{$list.mark} {$list.page_name}</option>
+         <!-- {/if} -->
+									<!-- {/foreach} -->
+        </select>
+       </td>
+      </tr>
+      <tr>
+       <td align="right">{$lang.page_content}</td>
+       <td>
+        <!-- umeditor -->
+        <link href="include/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+        <script type="text/javascript" charset="utf-8" src="include/umeditor/umeditor.config.js"></script>
+        <script type="text/javascript" charset="utf-8" src="include/umeditor/umeditor.min.js"></script>
+        <script type="text/javascript" src="include/umeditor/lang/zh-cn/zh-cn.js"></script>
+        <script type="text/plain" id="content" name="content" style="width:780px;height:300px;">{$page.content}</script>
+        <script type="text/javascript">
+            //实例化编辑器
+            var um = UM.getEditor('content');
+        </script>
+        <!-- /umeditor -->
+       </td>
+      </tr>
+      <tr>
+       <td align="right">{$lang.keywords}</td>
+       <td>
+        <input type="text" name="keywords" value="{$page.keywords}" size="90" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td align="right">{$lang.description}</td>
+       <td>
+        <input type="text" name="description" value="{$page.description}" size="90" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td></td>
+       <td>
+        <input type="hidden" name="token" value="{$token}" />
+        <input type="hidden" name="id" value="{$page.id}">
+        <input name="submit" class="btn" type="submit" value="{$lang.btn_submit}" />
+       </td>
+      </tr>
+     </table>
+    </form>
+    <!-- {/if} -->
+   </div>
+ </div>
+ {include file="footer.htm"}
+ </div>
+</body>
+</html>

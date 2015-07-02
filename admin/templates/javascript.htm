@@ -1,0 +1,53 @@
+<script type="text/javascript" src="images/jquery.min.js"></script>
+<script type="text/javascript" src="images/global.js"></script>
+<!-- {if $no_user} -->
+<script language="JavaScript">
+<!--
+// 这里把JS用到的所有语言都赋值到这里
+{foreach from=$lang.js_lang key=key item=item}
+var {$key} = "{$item}";
+{/foreach}
+//-->
+</script>
+<!-- {/if} -->
+<script type="text/javascript">
+{literal}
+//顶部下拉菜单
+$(document).ready(function(){
+  $('.M').hover(
+    function(){
+      $(this).addClass('active');
+    },
+    function(){
+      $(this).removeClass('active');
+    });
+});
+
+function change(id, choose)
+{
+  document.getElementById(id).value = choose.options[choose.selectedIndex].title;
+}
+
+{/literal}
+</script>
+<!-- {if $cur eq 'index'} -->
+<script type="text/javascript">
+var dou_api = '{$dou_api}';
+{literal}
+if (typeof(json) == 'undefined') var json='';
+function jsonCallBack(url, callback) {
+    $.getScript(url,
+    function() {
+        callback(json);
+    });
+}
+function dou_update() {
+    jsonCallBack(dou_api,
+    function(json) {
+        document.getElementById('douApi').innerHTML = json;
+    })
+}
+window.onload = dou_update;
+{/literal}
+</script>
+<!-- {/if} -->

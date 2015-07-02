@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}</title>
+<link href="template/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="wrapper">
+ <div class="logo"><a href="http://www.douco.com" target="_blank"><img src="template/logo.gif" alt="DouPHP" title="DouPHP" /></a></div>
+ <div class="check">
+  <h3>{$lang.check_system}</h3>
+  <ul>
+   <li>{$lang.os}..................................................................{$sys_info.os}</li>
+   <li>{$lang.web_server}......................................................{$sys_info.web_server}</li>
+   <li>{$lang.php_version}..................................................................{$sys_info.php_ver}</li>
+   <li>{$lang.mysql_version}..................................................................{$sys_info.mysql_ver}</li>
+   <li>{$lang.socket}..................................................................{$sys_info.socket}</li>
+   <li>{$lang.timezone}..................................................................{$sys_info.timezone}</li>
+   <li>{$lang.gd_version}..................................................................{$sys_info.gd}</li>
+   <li>{$lang.zlib}..................................................................{$sys_info.zlib}</li>
+  </ul>
+  <h3>{$lang.check_dir}</h3>
+  <ul>
+   <!-- {foreach from=$writeable item=writeable} -->
+   <li>{$writeable.dir}..................................................................{$writeable.if_write}</li>
+   <!-- {/foreach} -->
+  </ul>
+  <p class="action">
+  <input type="button" class="btnGray" value="{$lang.back}" onclick="location.href='index.php?step=welcome'"/>
+  <!-- {if $no_write} -->
+  <input type="submit" class="btnGray" value="{$lang.next}" onclick="location.href='index.php?step=setting'" disabled="true"/>
+  <!-- {else} -->
+  <input type="submit" class="btn" value="{$lang.next}" onclick="location.href='index.php?step=setting'"/>
+  <!-- {/if} -->
+  </p>
+ </div>
+</div>
+</body>
+</html>

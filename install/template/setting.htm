@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}</title>
+<link href="template/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="wrapper">
+ <div class="logo"><a href="http://www.douco.com" target="_blank"><img src="template/logo.gif" alt="DouPHP" title="DouPHP" /></a></div>
+ <div class="setting">
+  <!-- {if $cue} -->
+  <p class="cue"><strong>{$lang.wrong}：</strong>{$cue}</p>
+  <!-- {/if} -->
+  <form action="index.php?step=setting" method="POST">
+   <ul>
+    <h3>{$lang.setting_mysql}</h3>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+     <tr>
+      <td width="120"><strong>{$lang.setting_host}：</strong></td>
+      <td width="225">
+       <input type="text" name="dbhost" class="textInput" value="{if $post.dbhost}{$post.dbhost}{else}localhost{/if}"/>
+      </td>
+      <td>{$lang.setting_host_cue}</td>
+     </tr>
+     <tr>
+      <td><strong>{$lang.setting_dbuser}：</strong></td>
+      <td>
+       <input name="dbuser" type="text" class="textInput" value="{$post.dbuser}"/>
+      </td>
+      <td>{$lang.setting_dbuser_cue}</td>
+     </tr>
+     <tr>
+      <td><strong>{$lang.setting_dbpass}：</strong></td>
+      <td>
+       <input type="password" name="dbpass" class="textInput"/>
+      </td>
+      <td>{$lang.setting_dbpass_cue}</td>
+     </tr>
+     <tr>
+      <td><strong>{$lang.setting_dbname}：</strong></td>
+      <td>
+       <input name="dbname" type="text" class="textInput" value="{$post.dbname}"/>
+      </td>
+      <td>{$lang.setting_dbname_cue}</td>
+     </tr>
+     <tr>
+      <td><strong>{$lang.setting_prefix}：</strong></td>
+      <td>
+       <input type="text" name="prefix" class="textInput" value="{if $post.prefix}{$post.prefix}{else}dou_{/if}"/>
+      </td>
+      <td>{$lang.setting_prefix_cue}</td>
+     </tr>
+    </table>
+    <h3>{$lang.setting_manager}</h3>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+     <tr>
+      <td width="120"><strong>{$lang.setting_username}：</strong></td>
+      <td width="225">
+       <input name="username" type="text" class="textInput" value="{$post.username}"/>
+      </td>
+      <td>{$lang.setting_username_cue}</td>
+     </tr>
+     <tr>
+      <td><strong>{$lang.setting_password}：</strong></td>
+      <td>
+       <input type="password" name="password" class="textInput"/>
+      </td>
+      <td>{$lang.setting_password_cue}</td>
+     </tr>
+     <tr>
+      <td><strong>{$lang.setting_password_confirm}：</strong></td>
+      <td>
+       <input type="password" name="password_confirm" class="textInput"/>
+      </td>
+      <td>{$lang.setting_password_confirm_cue}</td>
+     </tr>
+    </table>
+   </ul>
+   <p class="action">
+    <input type="button" class="btnGray" value="{$lang.back}" onclick="location.href='index.php?step=check'"/>
+    <input type="submit" class="btn" name="install" value="{$lang.setting_submit}">
+   </p>
+  </form>
+ </div>
+</div>
+</body>
+</html>

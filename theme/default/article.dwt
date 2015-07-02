@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
+<meta name="generator" content="DouPHP v1.1" />
+<title>{$page_title}</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="images/jquery.min.js"></script>
+<script type="text/javascript" src="images/global.js"></script>
+</head>
+<body>
+<div id="wrapper">
+ {include file="inc/header.tpl"}
+ <div class="wrap mb">
+   <div id="pageLeft">
+    {include file="inc/article_tree.tpl"}
+   </div>
+   <div id="pageIn">
+     {include file="inc/ur_here.tpl"}
+     <div id="article">
+       <h1>{$article.title}</h1>
+       <div class="info">{$lang.add_time}：{$article.add_time} {$lang.click}：{$article.click}
+       <!-- {if $defined} -->
+       <!-- {foreach from=$defined name=defined item=defined} --> {$defined.arr}：{$defined.value}<!-- {/foreach} -->
+       <!-- {/if} -->
+       </div>
+       <div class="content">
+        {$article.content}
+       </div>
+       <div class="lift">
+        {if $lift.previous}<span>{$lang.article_previous}：<a href="{$lift.previous.url}">{$lift.previous.title}</a></span>{/if}
+        {if $lift.next}<span>{$lang.article_next}：<a href="{$lift.next.url}">{$lift.next.title}</a></span>{/if}
+       </div>
+     </div>
+   </div>
+   <div class="clear"></div>
+ </div>
+ {include file="inc/online_service.tpl"}
+ {include file="inc/footer.tpl"} </div>
+</body>
+</html>

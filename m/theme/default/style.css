@@ -1,0 +1,707 @@
+/*
+Template Name: default
+Version: 1.0
+Author: DouCo Design
+Author URI: http://www.douco.com/
+*/
+
+/* 全局通用
+----------------------------------------------- */
+body {
+ font-family: Microsoft Yahei, \5FAE\8F6F\96C5\9ED1, \5b8b\4f53, Arial, Lucida, Verdana, Helvetica, sans-serif;
+ color: #555;
+ background-color: #D5D5D6;
+ min-width: 320px;
+}
+body, button, input, textarea {
+ font-size: 12px;
+ line-height: 1.531;
+ outline: none;
+ margin: 0;
+ padding: 0;
+ border: 0;
+}
+p, ul, ol, dl, dt, dd, form, blockquote {
+ margin: 0;
+ padding: 0;
+}
+ul, ol {
+ list-style: none;
+}
+h1, h2, h3, h4, h5, h6 {
+ font-size: 12px;
+ margin: 0;
+ padding: 0;
+}
+em, b, i {
+ font-style: normal;
+ font-weight: normal;
+}
+img {
+ border: 0;
+}
+a {
+ text-decoration: none;
+ color: #333333;
+}
+a:hover {
+ text-decoration: underline;
+}
+input, img, select {
+ vertical-align: middle;
+}
+.clear {
+ clear: both;
+ height: 0;
+ line-height: 0;
+ font-size: 0;
+}
+.clearfix {
+ overflow: hidden;
+ zoom: 1;
+}
+.none {
+ display: none;
+}
+#captcha {
+ cursor: pointer;
+}
+/* 主体框架
+----------------------------------------------- */
+#wrapper {
+ width: 100%;
+ min-width: 320px;
+ margin: 0 auto;
+ max-width: 640px;
+ background-color: #FFF;
+ overflow: hidden;
+}
+#wrapper .mb {
+ margin-bottom: 50px;
+}
+/* -- header -- */
+#header {
+ zoom: 1;
+ overflow: hidden;
+ background-color: #0072C6;
+ height: 45px;
+ margin-bottom: 1px;
+ color: #FFF;
+ text-align: center;
+ font-size: 16px;
+}
+#header a {
+ color: #FFF;
+}
+#header em {
+ line-height: 45px;
+}
+#header .logo {
+ float: left;
+ padding-left: 11px;
+}
+#header .home, #header .siteMap {
+ display: block;
+ width: 45px;
+ height: 45px;
+}
+#header .home {
+ float: left;
+ background: url(images/icon_head.png) no-repeat left top;
+}
+#header .siteMap {
+ float: right;
+ background: url(images/icon_head.png) no-repeat right top;
+}
+#header .topSearch {
+ float: left;
+ width: 65%;
+ margin: 8px 0 0 8px;
+}
+#header .topSearch .searchBox {
+ border: 1px solid #FFF;
+ text-align: left;
+}
+/* -- mainNav -- */
+#mainNav {
+ font-size: 13px;
+}
+#mainNav ul {
+ zoom: 1;
+ overflow: hidden;
+}
+#mainNav li {
+ float: left;
+ width: 25%;
+}
+#mainNav li a {
+ display: block;
+ text-align: center;
+ border-right: solid #EEEEEE 1px;
+ border-bottom: solid #EEEEEE 1px;
+ line-height: 55px;
+}
+#mainNav li a.last {
+ border-right: none;
+}
+/* 首页样式
+----------------------------------------------- */
+/* -- 幻灯 -- */
+.slideShow {
+ position: relative;
+ padding: 0;
+ *zoom: 1;
+}
+.slideShow .slideBox {
+ background: #fff;
+ /*fix other elements on the page moving (on Chrome)*/
+ -webkit-transform: translatez(0);
+ -moz-transform: translatez(0);
+ -ms-transform: translatez(0);
+ -o-transform: translatez(0);
+ transform: translatez(0);
+}
+.slideShow .slideBox .slides img {
+ max-width: 100%;
+ display: block;
+}
+/* -- slideLoading -- */
+.slideShow .slideLoading {
+ min-height: 50px;
+ background: url(images/slide_loader.gif) center center no-repeat #fff;
+ height: 100%;
+ width: 100%;
+ position: absolute;
+ top: 0;
+ left: 0;
+ z-index: 2000;
+}
+/* -- previous 和 next 按钮 -- */
+.slideShow .arrowBox a {
+ z-index: 50;
+ font-family: \5b8b\4f53, sans-serif;
+ position: absolute;
+ display: block;
+ margin-bottom: -20px;
+ width: 40px;
+ height: 40px;
+ bottom: 50%;
+ line-height: 40px;
+ text-decoration: none;
+ text-align: center;
+ color: #fff;
+ font-size: 2em;
+ background-color: #333;
+ background-color: rgba(50,50,50,.3);
+}
+.slideShow .arrowBox a.disabled {
+ display: none;
+}
+.slideShow .arrowBox .arrowPrev {
+ left: 20px;
+}
+.slideShow .arrowBox .arrowNext {
+ right: 20px;
+}
+.slideShow .arrowBox a:hover {
+ background-color: rgba(50,50,50,.6);
+}
+/* -- controlBox -- */
+.slideShow .controlBox {
+ z-index: 30;
+ position: absolute;
+ bottom: 3px;
+ width: 100%;
+ text-align: center;
+ font-size: .85em;
+ font-family: Arial;
+ font-weight: bold;
+ color: #666;
+}
+.slideShow .controlBox .control {
+ display: inline-block;
+ *zoom: 1;
+ *display: inline;
+}
+.slideShow .controlBox.controlDefault a {
+ background: url(images/inactive.png) no-repeat 50% 50%;
+ text-indent: -9999px;
+ width: 13px;
+ height: 13px;
+ clear: none;
+ display: block;
+}
+.slideShow .controlBox.controlDefault a:hover, .slideShow .controlBox.controlDefault a.active {
+ background: url(images/active.png) no-repeat 50% 50%;
+}
+/* -- indexSearch -- */
+#indexSearch {
+ background-color: #EEEEEE;
+ height: 30px;
+ padding: 10px;
+}
+#indexSearch .searchBox {
+ border: 1px solid #DDDDDD;
+}
+/* 通用结构	
+----------------------------------------------- */
+/* -- form -- */
+.btn {
+ display: inline-block;
+ background-color: #0072C6;
+ color: #EEE;
+ padding: 8px 5px;
+ text-transform: capitalize;
+ cursor: pointer;
+ font-weight: bold;
+ font-size: 14px;
+ width: 97%;
+}
+.btn:hover {
+ text-decoration: none;
+ color: #FFFFFF;
+ background-color: #007AD5;
+}
+.btnGray {
+ display: inline-block;
+ background-color: #CCC;
+ border: 0;
+ color: #333;
+ padding: 6px 15px;
+ text-transform: capitalize;
+ cursor: pointer;
+ font-weight: bold;
+ width: 97%;
+}
+/* -- input -- */
+.textInput {
+ padding: 8px 5px;
+ border: 1px solid #DDDDDD;
+ font-size: 14px;
+ -webkit-appearance: none;
+ width: 95%;
+}
+.textArea {
+ padding: 8px 5px;
+ border: 1px solid #DDDDDD;
+ font-size: 14px;
+ -webkit-appearance: none;
+ width: 95%;
+}
+/* -- incBox -- */
+.incBox {
+ margin-bottom: 15px;
+}
+.incBox h3 {
+ font-weight: bold;
+ font-size: 16px;
+ color: #0072C6;
+ padding: 0 10px 8px 10px;
+ margin-top: 15px;
+}
+.incBox h3 .more {
+ float: right;
+ font-size: 13px;
+ color: #777777;
+}
+/* -- searchBox -- */
+.searchBox {
+ position: relative;
+ background-color: #FFF;
+ height: 28px;
+ padding-left: 10px;
+}
+.searchBox .keyword {
+ width: 90%;
+ color: #999;
+ height: 20px;
+ line-height: 20px;
+ margin: 4px 0;
+}
+.searchBox .btnSearch {
+ position: absolute;
+ right: 0;
+ border: 0;
+ background: #E0E0E0 url(images/btn_search.gif) no-repeat;
+ width: 28px;
+ height: 28px;
+ text-indent: -999px;
+ cursor: pointer;
+}
+/* -- tree -- */
+.treeBox {
+ zoom: 1;
+ overflow: hidden;
+ margin: 10px 5px;
+}
+.treeBox a {
+ display: block;
+ float: left;
+ margin: 5px;
+ border: solid #EEEEEE 1px;
+ padding: 3px 6px;
+}
+.treeBox a.cur {
+ background-color: #19B4EA;
+ color: #FFF;
+ border: solid #FFF 1px;
+}
+/* -- productList -- */
+.productList {
+ font-size: 13px;
+ zoom: 1;
+ overflow: hidden;
+ border-bottom: solid #F8F8F8 5px;
+}
+.productList dl {
+ float: left;
+ width: 50%;
+}
+.productList dd {
+ text-align: center;
+ border-right: solid #EEEEEE 1px;
+ border-top: solid #EEEEEE 1px;
+ padding: 10px;
+}
+.productList dd.clearBorder {
+ border-right: none;
+}
+.productList dd .img {
+ margin-bottom: 10px;
+}
+.productList dd .name {
+ margin-bottom: 6px;
+}
+.productList dd .price {
+ color: #999999;
+}
+/* -- articleList -- */
+.articleList {
+ border-bottom: solid #F8F8F8 5px;
+}
+.articleList dl {
+ border-top: solid #EEEEEE 1px;
+ padding: 13px;
+}
+.articleList dt {
+ margin-bottom: 5px;
+ font-size: 13px;
+}
+.articleList dd {
+ color: #999999;
+}
+.articleList dd em {
+ margin-right:8px;
+}
+/* 库项目样式
+----------------------------------------------- */
+/* -- urHere -- */
+.urHere {
+ background-color: #EEE;
+ color: #555;
+ padding: 10px;
+ font-weight: bold;
+ font-size: 15px;
+}
+.urHere a {
+ color: #0072C6;
+}
+.urHere b {
+ margin: 0 8px;
+}
+/* page
+----------------------------------------------- */
+#page {
+ margin-bottom: 30px;
+}
+#page h1 {
+ border-bottom: 1px solid #EEEEEE;
+ color: #333333;
+ font-size: 14px;
+ font-weight: bold;
+ padding: 0 0 10px 10px;
+}
+#page .content {
+ color: #878787;
+ line-height: 200%;
+ padding: 10px;
+}
+#page .content img {
+ max-width:100%;
+}
+/* product_category
+----------------------------------------------- */
+/* product
+----------------------------------------------- */
+#product {
+ margin-bottom: 30px;
+}
+#product .img {
+ border-bottom: 1px solid #EEEEEE;
+ padding: 10px;
+ text-align: center;
+}
+#product .info {
+ padding: 10px;
+ line-height: 180%;
+}
+#product .info h1 {
+ font-size: 14px;
+ color: #333333;
+}
+#product .info .defined {
+ color: #999999;
+ padding: 5px 0;
+}
+#product .info .price {
+ color: #FF0000;
+ font-size: 16px;
+}
+#product .info .tel {
+ margin-top: 20px;
+ zoom: 1;
+ overflow: hidden;
+ line-height: 35px;
+ background-color: #19B4EA;
+ font-weight: bold;
+ font-size: 14px;
+}
+#product .info .tel dt {
+ float: left;
+ width: 82px;
+ height: 35px;
+ text-align: right;
+ padding-right: 3px;
+ background-color: #E0E0E0;
+ color: #333;
+}
+#product .info .tel dd {
+ float: left;
+ width: 150px;
+ height: 35px;
+ color: #FFF;
+ padding-left: 10px;
+}
+#product .info .tel dd a {
+ color: #FFF;
+}
+#product .content {
+ padding: 15px 0;
+}
+#product .content img {
+ max-width:100%;
+}
+#product .content h3 {
+ height: 35px;
+ line-height: 35px;
+ color: #555555;
+ font-weight: bold;
+ font-size: 18px;
+ border-bottom: 1px solid #EEE;
+ padding-left: 10px;
+}
+#product .content ul {
+ padding: 10px;
+ color: #888888;
+ line-height: 200%;
+}
+/* article_category
+----------------------------------------------- */
+/* article
+----------------------------------------------- */
+#article {
+ margin-bottom: 30px;
+}
+#article h1 {
+ border-bottom: 1px solid #EEEEEE;
+ color: #333333;
+ font-size: 14px;
+ font-weight: bold;
+ padding: 0 0 10px 10px;
+}
+#article .info {
+ padding: 10px;
+ color: #999999;
+ font-size: 13px;
+}
+#article .content {
+ color: #878787;
+ line-height: 200%;
+ padding: 10px;
+}
+#article .content img {
+ max-width:100%;
+}
+/* 留言板
+----------------------------------------------- */
+#guestBook {
+ padding: 10px 0;
+}
+#guestBook h2 {
+ color: #0072C6;
+ font-size: 16px;
+ font-weight: bold;
+ padding: 0 0 10px 10px;
+ border-bottom: solid #EEE 1px;
+}
+/* bookList */
+#guestBook .bookList {
+ padding: 10px;
+ line-height: 180%;
+ font-size: 13px;
+ margin-bottom: 20px;
+}
+#guestBook .bookList dl {
+ margin-bottom: 15px;
+}
+#guestBook .bookList dt {
+ color: #333;
+ margin-bottom: 3px;
+ font-weight: bold;
+}
+#guestBook .bookList dd {
+ color: #999;
+}
+#guestBook .bookList p {
+ color: #0072C6;
+ margin-top: 5px;
+ overflow: hidden;
+ zoom: 1;
+}
+#guestBook .bookList p em {
+ float: left;
+ width: 70px;
+}
+#guestBook .bookList p span {
+ float: left;
+ width: 800px;
+}
+#guestBook .bookList p b {
+ color: #999;
+ float: right;
+}
+#guestBook .bookList .pager {
+ text-align: left;
+ padding: 0;
+}
+/* bookList */
+#guestBook .bookAdd {
+ font-size: 13px;
+ padding: 15px 10px;
+}
+#guestBook .bookAdd dl {
+ overflow: hidden;
+ zoom: 1;
+ margin-bottom: 20px;
+}
+#guestBook .bookAdd .contact dt {
+ float: left;
+ width: 110px;
+}
+#guestBook .bookAdd .contact dd {
+ margin-left: 110px;
+}
+#guestBook .bookAdd .contact dd .textInput {
+ width: 93%;
+}
+#guestBook .bookAdd .vcode {
+ text-transform: uppercase;
+ width: 100px;
+}
+#guestBook .bookAdd .select {
+ height: 38px;
+}
+#guestBook .bookAdd dl.cue {
+ margin: -8px 0 10px 60px;
+ color: #999;
+}
+#guestBook .bookAdd dl.submit {
+ margin: 20px 0 0 60px;
+}
+#guestBook .bookAdd dl b {
+ display: block;
+ padding: 2px 0 2px 3px;
+ color: #FF0000;
+ line-height: 16px;
+}
+/* 站点地图
+----------------------------------------------- */
+#catalog {
+ margin-bottom: 30px;
+ zoom: 1;
+ overflow: hidden;
+}
+#catalog li a {
+ display: block;
+ background: url(images/icon_arrow_right.png) no-repeat right center;
+ border-bottom: 1px solid #EEE;
+ line-height: 50px;
+ padding-left: 10px;
+}
+/* 提示信息
+----------------------------------------------- */
+#douMsg {
+ text-align: center;
+ padding:50px 0;
+}
+#douMsg dt {
+ color: #0072C6;
+ font-size: 16px;
+ margin-bottom: 30px;
+ font-weight: bold;
+}
+#douMsg dd {
+ color: #666;
+}
+#douMsg dd .back {
+ display:block;
+ width:100px;
+ line-height:30px;
+ background-color:#19B4EA;
+ color:#FFF;
+ margin:30px auto;
+}
+/* 分页
+----------------------------------------------- */
+.pager {
+ text-align: center;
+ padding: 20px;
+ color: #AAAAAA;
+}
+.pager em {
+ color: #525252;
+ margin: 0 30px;
+}
+.pager a {
+ color: #525252;
+}
+/* footer
+----------------------------------------------- */
+#footer .goTop {
+ display: block;
+ margin: 0 auto;
+ width: 60px;
+ text-align: center;
+ background: url(images/icon_gotop.png) no-repeat center top;
+ padding-top: 8px;
+ margin-bottom: 20px;
+}
+#footer ul {
+ background-color: #EEEEEE;
+ padding: 15px 0;
+ text-align: center;
+ color: #999999;
+}
+#footer a {
+ color: #555555;
+}
+#footer li {
+ padding: 5px 0;
+}
+#footer .footNav a {
+ margin: 0 5px;
+ color: #0072C6;
+}
+#footer .powered {
+ font-size: 11px;
+}

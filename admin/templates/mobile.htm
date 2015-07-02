@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$lang.home}{if $ur_here} - {$ur_here} {/if}</title>
+<meta name="Copyright" content="Douco Design." />
+<link href="templates/public.css" rel="stylesheet" type="text/css">
+{include file="javascript.htm"}
+<script type="text/javascript" src="images/jquery.tab.js"></script>
+</head>
+<body>
+<div id="dcWrap"> {include file="header.htm"}
+ <div id="dcLeft">{include file="menu.htm"}</div>
+ <div id="dcMain"> {include file="ur_here.htm"}
+  <div id="mobileBox">
+   <div id="mMenu">
+    <h3>{$lang.mobile}</h3>
+    <ul>
+     <li><a href="mobile.php"{if $rec eq 'system'} class="cur"{/if}>{$lang.mobile_system}</a></li>
+     <li><a href="mobile.php?rec=nav"{if $rec eq 'nav'} class="cur"{/if}>{$lang.mobile_nav}</a></li>
+     <li><a href="mobile.php?rec=show"{if $rec eq 'show'} class="cur"{/if}>{$lang.mobile_show}</a></li>
+    </ul>
+   </div>
+   <div id="mMain">
+    <div id="mainBox">
+     <!-- {if $rec eq 'system'} 手机版设置 开始 -->
+     <h3>{$ur_here}</h3>
+     <div class="system">
+      <form action="mobile.php?rec=system&act=update" method="post" enctype="multipart/form-data">
+       <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+        <tr>
+         <th width="141">{$lang.input_name}</th>
+         <th>{$lang.input_value}</th>
+        </tr>
+        <!-- {foreach from=$cfg_list_main item=cfg_list} -->
+        <tr>
+         <td align="right">{$cfg_list.lang}</td>
+         <td>
+          <!-- {if $cfg_list.type eq 'radio'} -->
+          <label for="{$cfg_list.name}_0">
+           <input type="radio" name="{$cfg_list.name}" id="{$cfg_list.name}_0" value="0"{if $cfg_list.value eq '0'} checked="true"{/if}>
+           {$lang.no}</label>
+          <label for="{$cfg_list.name}_1">
+           <input type="radio" name="{$cfg_list.name}" id="{$cfg_list.name}_1" value="1"{if $cfg_list.value eq '1'} checked="true"{/if}>
+           {$lang.yes}</label>
+          <!-- {elseif $cfg_list.type eq 'select'} -->
+          <select name="{$cfg_list.name}">
+           <!-- {foreach from=$cfg_list.box key=name item=value} -->
+           <option value="{$value}"{if $cfg_list.value eq $value} selected{/if}>{$value}</option>
+           <!-- {/foreach} -->
+          </select>
+          <!-- {elseif $cfg_list.type eq 'file'} -->
+          <input type="file" name="{$cfg_list.name}" size="18" />
+          {if $cfg_list.value}<a href="../{$cfg_list.value}" target="_blank"><img src="images/yes.gif"></a>{else}<img src="images/no.gif">{/if}
+          <!-- {elseif $cfg_list.type eq 'textarea'} -->
+          <textarea name="{$cfg_list.name}" cols="70" rows="5" class="textArea" />{$cfg_list.value}</textarea>
+          <!-- {else} -->
+          <input type="text" name="{$cfg_list.name}" value="{$cfg_list.value}" size="80" class="inpMain" />
+          <!-- {/if} -->
+          <!-- {if $cfg_list.cue} -->
+           <!-- {if $cfg_list.type eq 'radio' || $cfg_list.type eq 'select'} -->
+           <span class="cue ml">{$cfg_list.cue}</span>
+           <!-- {else} -->
+           <p class="cue">{$cfg_list.cue}</p>
+           <!-- {/if} -->
+          <!-- {/if} -->
+         </td>
+        </tr>
+        <!-- {/foreach} -->
+        <tr>
+         <td width="131"></td>
+         <td>
+          <input type="hidden" name="token" value="{$token}" />
+          <input name="submit" class="btn" type="submit" value="{$lang.btn_submit}" />
+         </td>
+        </tr>
+       </table>
+      </form>
+     </div>
+     <!-- {/if} 手机版设置 结束 --> 
+     <!-- {if $rec eq 'nav'} 手机版导航 开始 -->
+     <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+      <!-- {if $act eq 'default'} 导航列表 -->
+      <table width="100%" border="0" cellpadding="10" cellspacing="0" class="tableBasic">
+       <tr>
+        <th width="113" align="center">{$lang.nav_name}</th>
+        <th align="left">{$lang.nav_link}</th>
+        <th width="80" align="center">{$lang.sort}</th>
+        <th width="120" align="center">{$lang.handler}</th>
+       </tr>
+       <!-- {foreach from=$nav_list item=nav_list} -->
+       <tr>
+        <td>{$nav_list.mark} {$nav_list.nav_name}</td>
+        <td>{$nav_list.guide}</td>
+        <td align="center">{$nav_list.sort}</td>
+        <td align="center"><a href="mobile.php?rec=nav&act=edit&id={$nav_list.id}">{$lang.edit}</a> | <a href="mobile.php?rec=nav&act=del&id={$nav_list.id}">{$lang.del}</a></td>
+       </tr>
+       <!-- {/foreach} -->
+      </table>
+      <!-- {/if} -->
+      <!-- {if $act eq 'add'} 导航添加 -->
+      <div class="idTabs">
+        <ul class="tab">
+          <li><a href="#nav_add">{$lang.nav_inside}</a></li>
+          <li><a href="#nav_defined">{$lang.nav_defined}</a></li>
+        </ul>
+        <div class="items">
+          <div id="nav_add">
+           <form action="mobile.php?rec=nav&act=insert" method="post">
+            <table width="100%" border="0" cellpadding="5" cellspacing="1" class="tableBasic">
+             <tr>
+              <td width="80" height="35" align="right">{$lang.nav_system}</td>
+              <td>
+               <select name="nav_menu" onchange="change('nav_name', this)">
+                <option value="">{$lang.nav_menu}</option>
+                <!-- {foreach from=$catalog item=catalog} -->
+                <option value="{$catalog.module},{$catalog.guide}"{if $catalog.cur} selected="selected"{/if} title="{$catalog.name}">{$catalog.mark} {$catalog.name}</option>
+                <!-- {/foreach} -->
+               </select>
+              </td>
+             </tr>
+             <tr>
+              <td width="80" height="35" align="right">{$lang.nav_name}</td>
+              <td>
+               <input type="text" id="nav_name" name="nav_name" value="" size="40" class="inpMain" />
+              </td>
+             </tr>
+             <tr>
+              <td height="35" align="right">{$lang.sort}</td>
+              <td>
+               <input type="text" name="sort" value="50" size="5" class="inpMain" />
+              </td>
+             </tr>
+             <tr>
+              <td></td>
+              <td>
+               <input type="hidden" name="token" value="{$token}" />
+               <input name="submit" class="btn" type="submit" value="{$lang.btn_submit}" />
+              </td>
+             </tr>
+            </table>
+           </form>
+          </div>
+          <div id="nav_defined">
+           <form action="mobile.php?rec=nav&act=insert" method="post">
+            <table width="100%" border="0" cellpadding="5" cellspacing="1" class="tableBasic">
+             <tr>
+              <td width="80" height="35" align="right">{$lang.nav_name}</td>
+              <td>
+               <input type="text" name="nav_name" value="" size="40" class="inpMain" />
+              </td>
+             </tr>
+             <tr>
+              <td height="35" align="right">{$lang.nav_link}</td>
+              <td>
+               <input type="text" name="guide" value="" size="80" class="inpMain" />
+              </td>
+             </tr>
+             <tr>
+              <td height="35" align="right">{$lang.sort}</td>
+              <td>
+               <input type="text" name="sort" value="50" size="5" class="inpMain" />
+              </td>
+             </tr>
+             <tr>
+              <td></td>
+              <td>
+               <input type="hidden" name="token" value="{$token}" />
+               <input type="hidden" name="nav_menu" value="nav,0" />
+               <input name="submit" class="btn" type="submit" value="{$lang.btn_submit}" />
+              </td>
+             </tr>
+            </table>
+           </form>
+          </div>
+        </div>
+      </div>
+      <!-- {/if} -->
+      <!-- {if $act eq 'edit'} 导航编辑 -->
+      <form action="mobile.php?rec=nav&act=update" method="post">
+       <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+        <tr>
+         <th colspan="2">&nbsp;</th>
+        </tr>
+        <!-- {if $nav_info.module neq 'nav'} -->
+        <tr>
+         <td width="80" height="35" align="right">{$lang.nav_system}</td>
+         <td>
+          <select name="nav_menu" onchange="change('nav_name', this)">
+           <option value="">{$lang.nav_menu}</option>
+           <!-- {foreach from=$catalog item=catalog} -->
+           <option value="{$catalog.module},{$catalog.guide}"{if $catalog.cur} selected="selected"{/if} title="{$catalog.name}">{$catalog.mark} {$catalog.name}</option>
+           <!-- {/foreach} -->
+          </select>
+         </td>
+        </tr>
+        <!-- {/if} -->
+        <tr>
+         <td width="80" height="35" align="right">{$lang.nav_name}</td>
+         <td>
+          <input type="text" id="nav_name" name="nav_name" value="{$nav_info.nav_name}" size="40" class="inpMain" />
+         </td>
+        </tr>
+       <tr>
+         <td height="35" align="right">{$lang.nav_link}</td>
+         <td>
+          <!-- {if $nav_info.module eq 'nav'} -->
+          <input type="text" name="guide" value="{$nav_info.url}" size="60" class="inpMain" />
+          <!-- {else} -->
+          <input type="text" name="guide_no" value="{$nav_info.url}" size="60" readOnly="true" class="inpMain" />
+          <b class="cue">{$lang.nav_not_modify}</b>
+          <!-- {/if} -->
+         </td>
+        </tr>
+        <tr>
+         <td height="35" align="right">{$lang.sort}</td>
+         <td>
+          <input type="text" name="sort" value="{if $nav_info.sort}{$nav_info.sort}{else}50{/if}" size="5" class="inpMain" />
+         </td>
+        </tr>
+        <tr>
+         <td></td>
+         <td>
+          <input type="hidden" name="token" value="{$token}" />
+          <input type="hidden" name="id" value="{$nav_info.id}" />
+          <input name="submit" class="btn" type="submit" value="{$lang.btn_submit}" />
+         </td>
+        </tr>
+       </table>
+      </form>
+      <!-- {/if} -->
+     <!-- {/if} 手机版导航 结束 --> 
+     <!-- {if $rec eq 'show'} 手机版幻灯 开始 -->
+     <h3>{$ur_here}</h3>
+     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+      <tr>
+       <th>{$lang.show_add}</th>
+       <th>{$lang.show_list}</th>
+      </tr>
+      <tr>
+       <td width="350" valign="top"><form action="mobile.php?rec=show&act=insert" method="post" enctype="multipart/form-data">
+         <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableOnebor">
+          <tr>
+           <td>{$lang.show_name}<br>
+            <input type="text" name="show_name" value="" size="20" class="inpMain" /></td>
+          </tr>
+          <tr>
+           <td>{$lang.show_img}<br>
+            <input type="file" name="show_img" class="inpFlie" /></td>
+          </tr>
+          <tr>
+           <td>{$lang.show_link} <br>
+            <input type="text" name="show_link" value="" size="40" class="inpMain" /></td>
+          </tr>
+          <tr>
+           <td>{$lang.sort}<br>
+            <input type="text" name="sort" value="50" size="20" class="inpMain" /></td>
+          </tr>
+          <tr>
+           <td>
+            <input type="hidden" name="token" value="{$token}" />
+            <input name="submit" class="btn" type="submit" value="{$lang.btn_submit}" /></td>
+          </tr>
+         </table>
+        </form></td>
+       <td valign="top"><table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableOnebor">
+         <tr>
+          <td width="100">{$lang.show_name}</td>
+          <td></td>
+          <td width="50" align="center">{$lang.sort}</td>
+          <td width="80" align="center">{$lang.handler}</td>
+         </tr>
+         <!-- {foreach from=$show_list item=show_list} --> 
+         <!-- {if $show_list.id eq $id} -->
+         <form action="mobile.php?rec=show&act=update" method="post" enctype="multipart/form-data">
+          <tr>
+           <td height="30" colspan="4"><strong>{$lang.show_edit}</strong></td>
+          </tr>
+          <tr>
+           <td colspan="4"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tableNobor">
+             <tr>
+              <td>{$lang.show_name}:
+               <input type="text" name="show_name" value="{$show_list.show_name}" size="20" class="inpMain" /></td>
+              <td align="right">{$lang.sort}:
+               <input type="text" name="sort" value="{$show_list.sort}" size="20" class="inpMain" /></td>
+             </tr>
+            </table></td>
+          </tr>
+          <tr>
+           <td colspan="4">{$lang.show_img}:
+            <input type="file" name="show_img" />
+            {if $show_list.show_img}<a href="../{$show_list.show_img}" target="_blank"><img src="images/yes.gif"></a>{else}<img src="images/no.gif">{/if}</td>
+          </tr>
+          <tr>
+           <td colspan="4">{$lang.show_link}:
+            <input type="text" name="show_link" value="{$show_list.show_link}" size="55" class="inpMain" /></td>
+          </tr>
+          <input type="hidden" name="id" value="{$show_list.id}">
+          <tr>
+           <td height="40" colspan="4"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tableNobor">
+             <tr>
+              <td><a href="mobile.php?rec=show" class="btnGray">{$lang.cancel}</a></td>
+              <td align="right">
+               <input type="hidden" name="token" value="{$token}" />
+               <input type="hidden" name="show_img" value="{$show_list.show_img}">
+               <input name="submit" class="btn" type="submit" value="{$lang.btn_submit}" /></td>
+             </tr>
+            </table></td>
+          </tr>
+         </form>
+         <!-- {else} -->
+         <tr>
+          <td><a href="../{$show_list.show_img}" target="_blank"><img src="{$show_list.thumb}" width="100" /></a></td>
+          <td>{$show_list.show_name}</td>
+          <td align="center">{$show_list.sort}</td>
+          <td align="center"><a href="mobile.php?rec=show&act=edit&id={$show_list.id}">{$lang.edit}</a> | <a href="mobile.php?rec=show&act=del&id={$show_list.id}">{$lang.del}</a></td>
+         </tr>
+         <!-- {/if} --> 
+         <!-- {/foreach} -->
+        </table></td>
+      </tr>
+     </table>
+     <!-- {/if} 手机版幻灯 结束 --> 
+    </div>
+   </div>
+  </div>
+ </div>
+ {include file="footer.htm"} </div>
+</body>
+</html>

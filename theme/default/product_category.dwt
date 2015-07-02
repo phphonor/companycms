@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
+<title>{$page_title}</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="images/jquery.min.js"></script>
+<script type="text/javascript" src="images/global.js"></script>
+</head>
+<body>
+<div id="wrapper">
+ {include file="inc/header.tpl"}
+ <div class="wrap mb">
+  <div id="pageLeft">
+    {include file="inc/product_tree.tpl"}
+  </div>
+  <div id="pageIn">
+   {include file="inc/ur_here.tpl"}
+   <div class="productList">
+    <!-- {foreach from=$product_list name=product_list item=product} -->
+    <dl<!-- {if $smarty.foreach.product_list.last} --> class="last"<!-- {/if} -->>
+    <dt><a href="{$product.url}"><img src="{$product.thumb}" alt="{$product.name}" width="{$site.thumb_width}" height="{$site.thumb_height}" /></a></dt>
+    <dd>
+     <p class="name"><a href="{$product.url}" title="{$product.name}">{$product.name}</a></p>
+     <p class="brief">{$product.description|truncate:50:"..."}</p>
+     <p class="price">{$lang.price}：{$product.price}</p>
+     <p><a href="{$product.url}" class="btn">{$lang.product_buy}</a></p>
+    </dd>
+    </dl>
+    <!-- {/foreach} -->
+    <div class="clear"></div>
+   </div>
+   {include file="inc/pager.tpl"}
+  </div>
+  <div class="clear"></div>
+ </div>
+ {include file="inc/online_service.tpl"}
+ {include file="inc/footer.tpl"} </div>
+</body>
+</html>

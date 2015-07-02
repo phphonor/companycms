@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
+<meta name="generator" content="DouPHP v1.1" />
+<title>{$page_title}</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="images/jquery.min.js"></script>
+<script type="text/javascript" src="images/global.js"></script>
+</head>
+<body>
+<div id="wrapper">
+ {include file="inc/header.tpl"}
+ <div class="wrap mb">
+   <div id="pageLeft">
+    {include file="inc/product_tree.tpl"}
+   </div>
+   <div id="pageIn">
+     {include file="inc/ur_here.tpl"}
+     <div id="product">
+       <div class="productImg"><a href="{$product.product_image}" target="_blank"><img src="{$product.product_image}" width="300" /></a></div>
+       <div class="productInfo">
+         <h1>{$product.product_name}</h1>
+         <ul>
+           <li class="productPrice">{$lang.price}：<em class="price">{$product.price}</em></li>
+           <!-- {foreach from=$defined name=defined item=defined} -->
+           <li>{$defined.arr}：{$defined.value}</li>
+           <!-- {/foreach} -->
+         </ul>
+         <dl class="btnAsk">
+          <dt>{$lang.product_buy}：</dt>
+          <dd><!-- {foreach from=$site.qq name=qq item=qq} --><!-- {if $smarty.foreach.qq.first} --><a href="http://wpa.qq.com/msgrd?v=3&amp;uin={if is_array($qq)}{$qq.number}{else}{$qq}{/if}&amp;site=qq&amp;menu=yes" target="_blank"><img src="images/online_qq.jpg" /></a><!-- {/if} --><!-- {/foreach} --> <a href="mailto:{$site.email}"><img src="images/online_email.jpg" /></a></dd>
+         </dl>
+       </div>
+       <div class="clear"></div>
+       <div class="productContent">
+         <h3>{$lang.product_content}</h3>
+         <ul>{$product.content}</ul>
+       </div>
+     </div>
+   </div>
+   <div class="clear"></div>
+ </div>
+ {include file="inc/online_service.tpl"}
+ {include file="inc/footer.tpl"} </div>
+</body>
+</html>

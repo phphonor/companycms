@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+<location path="."  allowOverride="false"  inheritInChildApplications="false">
+<system.webServer>
+<rewrite>
+<rules>
+<rule name="index" stopProcessing="true">
+<match url="^index.html$" />
+<action type="Rewrite" url="index.php" />
+</rule>
+<rule name="sitemap" stopProcessing="true">
+<match url="^sitemap.xml$" />
+<action type="Rewrite" url="sitemap.php" />
+</rule>
+<rule name="common" stopProcessing="true">
+<match url="^([^?]*)" ignoreCase="false" />
+<conditions>
+ <add input="{REQUEST_FILENAME}" matchType="IsFile" ignoreCase="false" negate="true" />
+ <add input="{REQUEST_FILENAME}" matchType="IsDirectory" ignoreCase="false" negate="true" />
+</conditions>
+<action type="Rewrite" url="include/route.php?route={R:1}" appendQueryString="true" />
+</rule>
+</rules>
+</rewrite>
+</system.webServer>
+</location>
+</configuration>

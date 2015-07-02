@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="apple-touch-icon-precomposed" href="{$site.m_url}data/logo-icon.png" >
+<title>{$page_title}</title>
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
+<meta name="generator" content="DouPHP v1.1" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="images/jquery.min.js"></script>
+<script type="text/javascript" src="images/global.js"></script>
+<script type="text/javascript" src="images/slide_show.js"></script>
+</head>
+<body>
+<div id="wrapper"> {include file="inc/header.tpl"}
+ <div class="mb">
+  <div id="guestBook"> {if $guestbook}
+   <h2>{$lang.guestbook}</h2>
+   <div class="bookList"> 
+    <!-- {foreach from=$guestbook item=guestbook} -->
+    <dl>
+     <dt>{$guestbook.add_time}：{$guestbook.title}</dt>
+     <dd>{$guestbook.content}</dd>
+     <!-- {if $guestbook.reply} -->
+     <p><em>{$lang.guestbook_reply}：</em>{$guestbook.reply}</p>
+     <!-- {/if} -->
+    </dl>
+    <!-- {/foreach} --> 
+    {include file="inc/pager.tpl"} </div>
+   {/if}
+   <h2>{$lang.guestbook_add}</h2>
+   <div class="bookAdd">
+    <form action="{$insert_url}" method="post">
+     <dl>
+      <input type="text" name="title" value="{$post.title}" placeholder="{$lang.m_guestbook_title}" class="textInput" />
+      {$wrong.title}
+     </dl>
+     <dl>
+      <input type="text" name="name" value="{$post.name}" placeholder="{$lang.m_guestbook_name}" class="textInput" />
+      {$wrong.name}
+     </dl>
+     <dl class="contact">
+      <dt>
+       <select name="contact_type" class="select">
+        <option value="">{$lang.m_guestbook_contact_type}</option>
+        {$option}
+       </select>
+      </dt>
+      <dd>
+       <input type="text" name="contact" value="{$post.contact}" placeholder="{$lang.m_guestbook_contact}" class="textInput" />
+      </dd>
+      {$wrong.contact}
+     </dl>
+     <dl>
+      <textarea name="content" placeholder="{$lang.m_guestbook_content}" rows="5" class="textArea" />{$post.content}</textarea>
+      {$wrong.content}
+     </dl>
+     <dl>
+      <input name="vcode" type="text" placeholder="{$lang.m_captcha}" class="textInput vcode" size="10">
+      <img src="{$site.root_url}captcha.php" alt="{$lang.captcha}" name="captcha" height="37" id="captcha" title="{$lang.captcha_refresh}" onClick="refreshimage()" border="1">{$wrong.vcode}
+     </dl>
+     <input type="hidden" name="token" value="{$post.token}" />
+     <input type="submit" name="submit" class="btn" value="{$lang.btn_submit}" />
+    </form>
+   </div>
+  </div>
+ </div>
+ {include file="inc/footer.tpl"} </div>
+</body>
+</html>

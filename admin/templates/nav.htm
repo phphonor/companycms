@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$lang.home}{if $ur_here} - {$ur_here} {/if}</title>
+<meta name="Copyright" content="Douco Design." />
+<link href="templates/public.css" rel="stylesheet" type="text/css">
+{include file="javascript.htm"}
+<script type="text/javascript" src="images/jquery.tab.js"></script>
+</head>
+<body>
+<div id="dcWrap">
+ {include file="header.htm"}
+ <div id="dcLeft">{include file="menu.htm"}</div>
+ <div id="dcMain">
+   {include file="ur_here.htm"}
+   <div id="mainBox">
+    <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+    <!-- {if $rec eq 'default'} 导航列表 -->
+    <div class="navList">
+     <ul class="tab">
+      <li><a href="nav.php"{if $type eq 'middle'} class="selected"{/if}>{$lang.nav_type_middle}</a></li>
+      <li><a href="nav.php?type=top"{if $type eq 'top'} class="selected"{/if}>{$lang.nav_type_top}</a></li>
+      <li><a href="nav.php?type=bottom"{if $type eq 'bottom'} class="selected"{/if}>{$lang.nav_type_bottom}</a></li>
+     </ul>
+     <table width="100%" border="0" cellpadding="10" cellspacing="0" class="tableBasic">
+      <tr>
+       <th width="113" align="center">{$lang.nav_name}</th>
+       <th align="left">{$lang.nav_link}</th>
+       <th width="80" align="center">{$lang.sort}</th>
+       <th width="120" align="center">{$lang.handler}</th>
+      </tr>
+      <!-- {foreach from=$nav_list item=nav_list} -->
+      <tr>
+       <td>{$nav_list.mark} {$nav_list.nav_name}</td>
+       <td>{$nav_list.guide}</td>
+       <td align="center">{$nav_list.sort}</td>
+       <td align="center"><a href="nav.php?rec=edit&id={$nav_list.id}">{$lang.edit}</a> | <a href="nav.php?rec=del&id={$nav_list.id}">{$lang.del}</a></td>
+      </tr>
+      <!-- {/foreach} -->
+     </table>
+    </div>
+    <!-- {/if} -->
+    <!-- {if $rec eq 'add'} 导航添加 -->
+    <div class="idTabs">
+      <ul class="tab">
+        <li><a href="#nav_add">{$lang.nav_inside}</a></li>
+        <li><a href="#nav_defined">{$lang.nav_defined}</a></li>
+      </ul>
+      <div class="items">
+        <div id="nav_add">
+         <form action="nav.php?rec=insert" method="post">
+          <table width="100%" border="0" cellpadding="5" cellspacing="1" class="tableBasic">
+           <tr>
+            <td width="80" height="35" align="right">{$lang.nav_system}</td>
+            <td>
+             <select name="nav_menu" onchange="change('nav_name', this)">
+              <option value="">{$lang.nav_menu}</option>
+              <!-- {foreach from=$catalog item=catalog} -->
+              <option value="{$catalog.module},{$catalog.guide}"{if $catalog.cur} selected="selected"{/if} title="{$catalog.name}">{$catalog.mark} {$catalog.name}</option>
+              <!-- {/foreach} -->
+             </select>
+            </td>
+           </tr>
+           <tr>
+            <td width="80" height="35" align="right">{$lang.nav_name}</td>
+            <td>
+             <input type="text" id="nav_name" name="nav_name" value="" size="40" class="inpMain" />
+            </td>
+           </tr>
+           <tr>
+            <td height="35" align="right">{$lang.nav_type}</td>
+            <td>
+             <label for="type_0">
+ <input type="radio" name="type" id="type_0" value="middle" checked="true" onChange="dou_callback('nav.php?rec=nav_select&id={$nav_info.id}', 'type', this.value, 'parent')">
+ {$lang.nav_type_middle}</label>
+<label for="type_1">
+ <input type="radio" name="type" id="type_1" value="top" onChange="dou_callback('nav.php?rec=nav_select&id={$nav_info.id}', 'type', this.value, 'parent')">
+ {$lang.nav_type_top}</label>
+<label for="type_2">
+ <input type="radio" name="type" id="type_2" value="bottom" onChange="dou_callback('nav.php?rec=nav_select&id={$nav_info.id}', 'type', this.value, 'parent')">
+ {$lang.nav_type_bottom}</label>
+            </td>
+           </tr>
+           <tr>
+            <td height="35" align="right">{$lang.parent}</td>
+												<td id="parent">
+													<select name="parent_id">
+														<option value="0">{$lang.empty}</option>
+														<!-- {foreach from=$nav_list item=list} -->
+														<option value="{$list.id}">{$list.mark} {$list.nav_name}</option>
+														<!-- {/foreach} -->
+													</select>
+												</td>
+           </tr>
+           <tr>
+            <td height="35" align="right">{$lang.sort}</td>
+            <td>
+             <input type="text" name="sort" value="50" size="5" class="inpMain" />
+            </td>
+           </tr>
+           <tr>
+            <td></td>
+            <td>
+             <input type="hidden" name="token" value="{$token}" />
+             <input name="submit" class="btn" type="submit" value="{$lang.btn_submit}" />
+            </td>
+           </tr>
+          </table>
+         </form>
+        </div>
+        <div id="nav_defined">
+         <form action="nav.php?rec=insert" method="post">
+          <table width="100%" border="0" cellpadding="5" cellspacing="1" class="tableBasic">
+           <tr>
+            <td width="80" height="35" align="right">{$lang.nav_name}</td>
+            <td>
+             <input type="text" name="nav_name" value="" size="40" class="inpMain" />
+            </td>
+           </tr>
+           <tr>
+            <td height="35" align="right">{$lang.nav_type}</td>
+            <td>
+             <label for="type_0">
+ <input type="radio" name="type" id="type_0" value="middle" checked="true" onChange="dou_callback('nav.php?rec=nav_select&id={$nav_info.id}', 'type', this.value, 'parent_external')">
+ {$lang.nav_type_middle}</label>
+<label for="type_1">
+ <input type="radio" name="type" id="type_1" value="top" onChange="dou_callback('nav.php?rec=nav_select&id={$nav_info.id}', 'type', this.value, 'parent_external')">
+ {$lang.nav_type_top}</label>
+<label for="type_2">
+ <input type="radio" name="type" id="type_2" value="bottom" onChange="dou_callback('nav.php?rec=nav_select&id={$nav_info.id}', 'type', this.value, 'parent_external')">
+ {$lang.nav_type_bottom}</label>
+            </td>
+           </tr>
+           <tr>
+            <td height="35" align="right">{$lang.nav_link}</td>
+            <td>
+             <input type="text" name="guide" value="" size="80" class="inpMain" />
+            </td>
+           </tr>
+           <tr>
+            <td height="35" align="right">{$lang.parent}</td>
+												<td id="parent_external">
+													<select name="parent_id">
+														<option value="0">{$lang.empty}</option>
+														<!-- {foreach from=$nav_list item=list} -->
+														<option value="{$list.id}">{$list.mark} {$list.nav_name}</option>
+														<!-- {/foreach} -->
+													</select>
+												</td>
+           </tr>
+           <tr>
+            <td height="35" align="right">{$lang.sort}</td>
+            <td>
+             <input type="text" name="sort" value="50" size="5" class="inpMain" />
+            </td>
+           </tr>
+           <tr>
+            <td></td>
+            <td>
+             <input type="hidden" name="token" value="{$token}" />
+             <input type="hidden" name="nav_menu" value="nav,0" />
+             <input name="submit" class="btn" type="submit" value="{$lang.btn_submit}" />
+            </td>
+           </tr>
+          </table>
+         </form>
+        </div>
+      </div>
+    </div>
+    <!-- {/if} -->
+    <!-- {if $rec eq 'edit'} 导航编辑 -->
+    <form action="nav.php?rec=update" method="post">
+     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+      <tr>
+       <th colspan="2">&nbsp;</th>
+      </tr>
+      <!-- {if $nav_info.module neq 'nav'} -->
+      <tr>
+       <td width="80" height="35" align="right">{$lang.nav_system}</td>
+       <td>
+        <select name="nav_menu" onchange="change('nav_name', this)">
+         <option value="">{$lang.nav_menu}</option>
+         <!-- {foreach from=$catalog item=catalog} -->
+         <option value="{$catalog.module},{$catalog.guide}"{if $catalog.cur} selected="selected"{/if} title="{$catalog.name}">{$catalog.mark} {$catalog.name}</option>
+         <!-- {/foreach} -->
+        </select>
+       </td>
+      </tr>
+      <!-- {/if} -->
+      <tr>
+       <td width="80" height="35" align="right">{$lang.nav_name}</td>
+       <td>
+        <input type="text" id="nav_name" name="nav_name" value="{$nav_info.nav_name}" size="40" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+      <td height="35" align="right">{$lang.nav_type}</td>
+      <td>
+       <label for="type_0">
+       <input type="radio" name="type" id="type_0" value="middle"{if $nav_info.type eq 'middle'} checked="true"{/if} onChange="dou_callback('nav.php?rec=nav_select&id={$nav_info.id}', 'type', this.value, 'parent')">{$lang.nav_type_middle}</label>
+       <label for="type_1">
+       <input type="radio" name="type" id="type_1" value="top"{if $nav_info.type eq 'top'} checked="true"{/if} onChange="dou_callback('nav.php?rec=nav_select&id={$nav_info.id}', 'type', this.value, 'parent')">{$lang.nav_type_top}</label>
+       <label for="type_2">
+       <input type="radio" name="type" id="type_2" value="bottom"{if $nav_info.type eq 'bottom'} checked="true"{/if} onChange="dou_callback('nav.php?rec=nav_select&id={$nav_info.id}', 'type', this.value, 'parent')">{$lang.nav_type_bottom}</label>
+      </td>
+     </tr>
+     <tr>
+       <td height="35" align="right">{$lang.nav_link}</td>
+       <td>
+        <!-- {if $nav_info.module eq 'nav'} -->
+        <input type="text" name="guide" value="{$nav_info.url}" size="60" class="inpMain" />
+        <!-- {else} -->
+        <input type="text" name="guide_no" value="{$nav_info.url}" size="60" readOnly="true" class="inpMain" />
+        <b class="cue">{$lang.nav_not_modify}</b>
+        <!-- {/if} -->
+       </td>
+      </tr>
+      <tr>
+       <td height="35" align="right">{$lang.parent}</td>
+       <td id="parent">
+        <select name="parent_id">
+         <option value="0">{$lang.empty}</option>
+         <!-- {foreach from=$nav_list item=nav_list} -->
+         <option value="{$nav_list.id}"<!-- {if $nav_list.id eq $nav_info.parent_id} --> selected<!-- {/if} -->>{$nav_list.mark} {$nav_list.nav_name}</option>
+         <!-- {/foreach} -->
+        </select>
+       </td>
+      </tr>
+      <tr>
+       <td height="35" align="right">{$lang.sort}</td>
+       <td>
+        <input type="text" name="sort" value="{if $nav_info.sort}{$nav_info.sort}{else}50{/if}" size="5" class="inpMain" />
+       </td>
+      </tr>
+      <tr>
+       <td></td>
+       <td>
+        <input type="hidden" name="token" value="{$token}" />
+        <input type="hidden" name="id" value="{$nav_info.id}" />
+        <input name="submit" class="btn" type="submit" value="{$lang.btn_submit}" />
+       </td>
+      </tr>
+     </table>
+    </form>
+    <!-- {/if} -->
+   </div>
+ </div>
+ {include file="footer.htm"}
+ </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
++-----------------------------------------------------------------------------
+| 复制以下代码到你的配置文件中对应主机里加入就可，一般加到PHP配置的那段上面
+| 如果系统安装在二级目录，则需修改以下
+| location / 改为 location /douphp/
+| rewrite ^/ 改为 rewrite ^/douphp/ 和 /*** last 改为 /douphp/*** last
++-----------------------------------------------------------------------------
+
+location / { 
+ if (!-e $request_filename) {
+  rewrite ^/m/index\.html$     /m/index.php last;
+  rewrite ^/m/sitemap\.xml$    /m/sitemap.php last;
+  rewrite ^/m/(.*)$     /m/include/route.php?route=$1 last; 
+  rewrite ^/index\.html$     /index.php last;
+  rewrite ^/sitemap\.xml$    /sitemap.php last;
+  rewrite ^/(.*)$     /include/route.php?route=$1 last; 
+ } 
+}

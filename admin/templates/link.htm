@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$lang.home}{if $ur_here} - {$ur_here} {/if}</title>
+<meta name="Copyright" content="Douco Design." />
+<link href="templates/public.css" rel="stylesheet" type="text/css">
+{include file="javascript.htm"}
+</head>
+<body>
+<div id="dcWrap">
+ {include file="header.htm"}
+ <div id="dcLeft">{include file="menu.htm"}</div>
+ <div id="dcMain">
+   {include file="ur_here.htm"}
+   <div id="mainBox">
+    <h3>{$ur_here}</h3>
+    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+    <tr>
+       <th>{$lang.link_add}</th>
+       <th>{$lang.link_list}</th>
+     </tr>
+     <tr>
+      <td width="350" valign="top">
+       <form action="link.php?rec=insert" method="post" enctype="multipart/form-data">
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableOnebor">
+         <tr>
+          <td>{$lang.link_name}<br>
+<input type="text" name="link_name" value="" size="20" class="inpMain" />
+          </td>
+         </tr>
+         <tr>
+          <td>{$lang.link_link}
+           <br>
+           <input type="text" name="link_url" value="" size="40" class="inpMain" />
+          </td>
+         </tr>
+         <tr>
+          <td>{$lang.sort}<br>
+<input type="text" name="sort" value="50" size="20" class="inpMain" />
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <input type="hidden" name="token" value="{$token}" />
+           <input name="submit" class="btn" type="submit" value="{$lang.btn_submit}" />
+          </td>
+         </tr>
+        </table>
+       </form>
+      </td>
+      <td valign="top">
+       <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableOnebor">
+        <form action="link.php?rec=update" method="post" enctype="multipart/form-data">
+         <tr>
+          <td>{$lang.link_name}</td>
+          <td width="50" align="center">{$lang.sort}</td>
+          <td width="80" align="center">{$lang.handler}</td>
+         </tr>
+         <!-- {foreach from=$link_list item=link_list} -->
+         <!-- {if $link_list.id eq $id} -->
+         <tr>
+          <td height="30" colspan="3"><strong>{$lang.link_edit}</strong></td>
+          </tr>
+         <tr>
+          <td colspan="3">
+           <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+             <td>{$lang.link_name}:
+           <input type="text" name="link_name" value="{$link_list.link_name}" size="20" class="inpMain" /></td>
+             <td align="right">{$lang.sort}:
+     <input type="text" name="sort" value="{$link_list.sort}" size="20" class="inpMain" /></td>
+            </tr>
+           </table>
+           
+          </td>
+          </tr>
+         <tr>
+          <td colspan="3">{$lang.link_link}:
+           <input type="text" name="link_url" value="{$link_list.link_url}" size="55" class="inpMain" />
+          </td>
+         </tr>
+         <input type="hidden" name="id" value="{$link_list.id}">
+         <tr>
+          <td height="40" colspan="3">
+           <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+             <td><a href="link.php">{$lang.cancel}</a></td>
+             <td align="right">
+             <input type="hidden" name="token" value="{$token}" />
+             <input name="submit" class="btn" type="submit" value="{$lang.btn_submit}" />
+             </td>
+            </tr>
+           </table>
+          </td>
+          </tr>
+         <!-- {else} -->
+         <tr>
+          <td>{$link_list.link_name}</td>
+          <td align="center">{$link_list.sort}</td>
+          <td align="center"><a href="link.php?rec=edit&id={$link_list.id}">{$lang.edit}</a> | <a href="link.php?rec=del&id={$link_list.id}">{$lang.del}</a></td>
+         </tr>
+         <!-- {/if} -->
+         <!-- {/foreach} -->
+        </form>
+       </table>
+      </td>
+     </tr>
+    </table>
+   </div>
+ </div>
+ {include file="footer.htm"}
+ </div>
+</body>
+</html>

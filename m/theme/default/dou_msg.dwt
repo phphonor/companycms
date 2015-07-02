@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- {if $url} -->
+<meta http-equiv="refresh" content="{$time}; URL={$url}" />
+<!-- {/if} -->
+<meta name="viewport" content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="apple-touch-icon-precomposed" href="{$site.m_url}data/logo-icon.png" >
+<title>{$page_title}</title>
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
+<meta name="generator" content="DouPHP v1.1" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="images/jquery.min.js"></script>
+<script type="text/javascript" src="images/global.js"></script>
+<!-- {if !$url} -->
+<script language=javascript>
+{literal}
+function go() {
+    window.history.go( - 1);
+}
+setTimeout("go()", 3000);
+{/literal}
+</script>
+<!-- {/if} -->
+</head>
+<body>
+<div id="wrapper"> {include file="inc/header.tpl"}
+ <div id="douMsg">
+  <dl>
+   <dt>{$text}</dt>
+   <dd>{$cue}</dd>
+   <dd><a href="{if $url}{$url}{else}javascript:history.go(-1);{/if}" class="back">{$lang.dou_msg_back}</a></dd>
+  </dl>
+ </div>
+ {include file="inc/footer.tpl"} </div>
+</body>
+</html>

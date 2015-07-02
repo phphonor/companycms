@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
+<meta name="generator" content="DouPHP v1.1" />
+<title>{$page_title}</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="images/jquery.min.js"></script>
+<script type="text/javascript" src="images/global.js"></script>
+<script type="text/javascript" src="images/slide_show.js"></script>
+</head>
+<body>
+<div id="wrapper">
+ {include file="inc/header.tpl"}
+ <div id="index" class="wrap mb">
+  {include file="inc/slide_show.tpl"}
+  <div id="indexLeft">
+    {include file="inc/recommend_product.tpl"}
+    {include file="inc/about.tpl"}
+  </div>
+  <div id="indexRight">
+    {include file="inc/recommend_article.tpl"}
+    {include file="inc/contact.tpl"}
+  </div>
+  <div class="clear"></div>
+ </div>
+ {include file="inc/link.tpl"}
+ {include file="inc/online_service.tpl"}
+ {include file="inc/footer.tpl"} </div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$lang.home}{if $ur_here} - {$ur_here} {/if}</title>
+<meta name="Copyright" content="Douco Design." />
+<link href="templates/public.css" rel="stylesheet" type="text/css">
+{include file="javascript.htm"}
+</head>
+<body>
+<div id="dcWrap">
+ {include file="header.htm"}
+ <div id="dcLeft">{include file="menu.htm"}</div>
+ <div id="dcMain">
+   {include file="ur_here.htm"}
+   <div id="mainBox">
+    <h3><a href="{$action_link.href}" class="actionBtn">{$action_link.text}</a>{$ur_here}</h3>
+    <!-- {if $rec eq 'default'} 数据备份 -->
+    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+     <form name="myform" method="post" action="backup.php?rec=backup">
+      <tr>
+       <th align="center">
+        <input name='chkall' type='checkbox' id='chkall' onclick='selectcheckbox(this.form)' value='check' checked>
+       </th>
+       <th align="left">{$lang.backup_table_name}</th>
+       <th align="center">{$lang.backup_table_engine}</th>
+       <th align="center">{$lang.backup_table_rows}</th>
+       <th align="center">{$lang.backup_data_length}</th>
+       <th align="center">{$lang.backup_index_length}</th>
+       <th align="center">{$lang.backup_data_free}</th>
+      </tr>
+      <!-- {foreach from=$tables item=tables} -->
+      <tr>
+       <td align="center"><input type=checkbox name=tables[] value={$tables.Name} checked></td>
+       <td align="left">{$tables.Name}</td>
+       <td align="center">{$tables.Engine}</td>
+       <td align="center">{$tables.Rows}</td>
+       <td align="center">{$tables.Data_length}</td>
+       <td align="center">{$tables.Index_length}</td>
+       <td align="center">{$tables.Data_free}</td>
+      </tr>
+      <!-- {/foreach} -->
+      <tr>
+       <td colspan="7" align="right">{$lang.backup_total_size} {$totalsize} KB </td>
+      </tr>
+      <tr>
+       <td colspan="7" align="center">{$lang.backup_vol_set}</td>
+      </tr>
+      <tr>
+       <td colspan="7" align="center">
+        {$lang.backup_sql_file_name}：<input type="text" class="inpMain" name="file_name" value="{$file_name}" size=30>
+        {$lang.backup_vol_size}：<input type="text" class="inpMain" name="vol_size" value="2048" size="5">K
+       </td>
+      </tr>
+      <tr>
+       <td height="26" colspan="7">
+        <input type="hidden" name="token" value="{$token}" />
+        <input type="hidden" name="totalsize" value="{$totalsize}">
+        <input type="submit" name="submit" class="btn" value="{$lang.backup_submit}"  onClick="document.myform.action='backup.php?rec=backup'">
+       </td>
+      </tr>
+     </form>
+    </table>
+    <!--{/if}-->
+    <!-- {if $rec eq 'restore'} 恢复备份 -->
+    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+     <tr>
+      <th width="" align="left">{$lang.backup_sql_file_name}</th>
+      <th width="100">{$lang.backup_sql_filesize}</th>
+      <th width="160">{$lang.backup_sql_maketime}</th>
+      <th width="140">{$lang.handler}</th>
+     </tr>
+     <!-- {foreach from=$infos item=file} -->
+     <tr<!-- {if $file.number gt 1} --> class="child"<!-- {/if} -->>
+      <td align="left">{$file.sql_file_name}</td>
+      <td align="center">{$file.filesize}</td>
+      <td align="center">{$file.maketime}</td>
+      <td align="center"><!-- {if $file.number le 1} --><a href="backup.php?rec=import&sql_file_name={$file.sql_file_name}">{$lang.backup_sql_pre}</a> | <a href=backup.php?rec=down&sql_file_name={$file.sql_file_name}>{$lang.down}</a> | <a href=backup.php?rec=del&sql_file_name={$file.sql_file_name}>{$lang.del}</a><!-- {/if} --></td>
+     </tr>
+     <!-- {/foreach} -->
+    </table>
+    <!--{/if}-->
+   </div>
+ </div>
+ {include file="footer.htm"}
+ </div>
+</body>
+</html>

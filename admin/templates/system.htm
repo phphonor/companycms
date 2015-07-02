@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$lang.home}{if $ur_here} - {$ur_here} {/if}</title>
+<meta name="Copyright" content="Douco Design." />
+<link href="templates/public.css" rel="stylesheet" type="text/css">
+{include file="javascript.htm"}
+<script type="text/javascript" src="images/jquery.tab.js"></script>
+</head>
+<body>
+<div id="dcWrap">
+ {include file="header.htm"}
+ <div id="dcLeft">{include file="menu.htm"}</div>
+ <div id="dcMain">
+   {include file="ur_here.htm"}
+   <div id="mainBox">
+    <h3>{$ur_here}</h3>
+    <div class="idTabs">
+      <ul class="tab">
+        <li><a href="#main">{$lang.system_main}</a></li>
+        <li><a href="#display">{$lang.system_display}</a></li>
+        <li><a href="#defined">{$lang.system_defined}</a></li>
+      </ul>
+      <div class="items">
+       <form action="system.php?rec=update" method="post" enctype="multipart/form-data">
+        <div id="main">
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+         <tr>
+           <th width="131">{$lang.input_name}</th>
+           <th>{$lang.input_value}</th>
+         </tr>
+         <!-- {foreach from=$cfg_list_main item=cfg_list} -->
+         <tr>
+          <td align="right">{$cfg_list.lang}</td>
+          <td>
+           <!-- {if $cfg_list.type eq 'radio'} -->
+           <label for="{$cfg_list.name}_0">
+            <input type="radio" name="{$cfg_list.name}" id="{$cfg_list.name}_0" value="0"{if $cfg_list.value eq '0'} checked="true"{/if}>
+            {$lang.no}</label>
+           <label for="{$cfg_list.name}_1">
+            <input type="radio" name="{$cfg_list.name}" id="{$cfg_list.name}_1" value="1"{if $cfg_list.value eq '1'} checked="true"{/if}>
+            {$lang.yes}</label>
+           <!-- {elseif $cfg_list.type eq 'select'} -->
+           <select name="{$cfg_list.name}">
+            <!-- {foreach from=$cfg_list.box key=name item=value} -->
+            <option value="{$value}"{if $cfg_list.value eq $value} selected{/if}>{$value}</option>
+            <!-- {/foreach} -->
+           </select>
+           <!-- {elseif $cfg_list.type eq 'file'} -->
+           <input type="file" name="{$cfg_list.name}" size="18" />
+           {if $cfg_list.value}<a href="../{$cfg_list.value}" target="_blank"><img src="images/yes.gif"></a>{else}<img src="images/no.gif">{/if}
+           <!-- {elseif $cfg_list.type eq 'textarea'} -->
+           <textarea name="{$cfg_list.name}" cols="70" rows="5" class="textArea" />{$cfg_list.value}</textarea>
+           <!-- {else} -->
+           <input type="text" name="{$cfg_list.name}" value="{$cfg_list.value}" size="80" class="inpMain" />
+           <!-- {/if} -->
+           <!-- {if $cfg_list.cue} -->
+            <!-- {if $cfg_list.type eq 'radio' || $cfg_list.type eq 'select'} -->
+            <span class="cue ml">{$cfg_list.cue}</span>
+            <!-- {else} -->
+            <p class="cue">{$cfg_list.cue}</p>
+            <!-- {/if} -->
+           <!-- {/if} -->
+          </td>
+         </tr>
+         <!-- {/foreach} -->
+        </table>
+        </div>
+        <div id="display">
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+         <tr>
+           <th width="131">{$lang.input_name}</th>
+           <th>{$lang.input_value}</th>
+         </tr>
+         <!-- {foreach from=$cfg_list_display item=cfg_list} -->
+         <tr>
+          <td align="right">{$cfg_list.lang}</td>
+          <td>
+           <input type="text" name="{$cfg_list.name}" value="{$cfg_list.value}" size="80" class="inpMain" />
+           <!-- {if $cfg_list.cue} -->
+            <p class="cue">{$cfg_list.cue}</p>
+           <!-- {/if} -->
+          </td>
+         </tr>
+         <!-- {/foreach} -->
+        </table>
+        </div>
+        <div id="defined">
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+         <tr>
+           <th width="131">{$lang.input_name}</th>
+           <th>{$lang.input_value}</th>
+         </tr>
+         <!-- {foreach from=$cfg_list_defined item=cfg_list} -->
+         <tr>
+          <td align="right">{$cfg_list.lang}</td>
+          <td>
+           <input type="text" name="{$cfg_list.name}" value="{$cfg_list.value}" size="80" class="inpMain" />
+           <!-- {if $cfg_list.cue} -->
+            <p class="cue">{$cfg_list.cue}</p>
+           <!-- {/if} -->
+          </td>
+         </tr>
+         <!-- {/foreach} -->
+        </table>
+        </div>
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+         <tr>
+          <td width="131"></td>
+          <td>
+           <input type="hidden" name="token" value="{$token}" />
+           <input name="submit" class="btn" type="submit" value="{$lang.btn_submit}" />
+          </td>
+         </tr>
+        </table>
+        </form>
+      </div>
+    </div>
+   </div>
+ </div>
+ {include file="footer.htm"}
+ </div>
+</body>
+</html>

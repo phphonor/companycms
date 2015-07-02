@@ -1,0 +1,16 @@
+<FilesMatch "\.(bak|inc|lib|sh|tpl|lbi|dwt)$">
+    order deny,allow
+    deny from all
+</FilesMatch>
+
+RewriteEngine On
+
+#RewriteBase /
+RewriteRule ^index\.html$    index\.php [L]
+RewriteRule ^sitemap\.xml$    sitemap\.php [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|js|css)
+
+# common
+RewriteRule ^([^?]*) include/route.php?route=$1 [L,QSA]

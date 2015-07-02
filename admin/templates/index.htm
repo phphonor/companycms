@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$lang.home}{if $ur_here} - {$ur_here} {/if}</title>
+<meta name="Copyright" content="Douco Design." />
+<link href="templates/public.css" rel="stylesheet" type="text/css">
+{include file="javascript.htm"}
+</head>
+<body>
+<div id="dcWrap"> {include file="header.htm"}
+ <div id="dcLeft">{include file="menu.htm"}</div>
+ <div id="dcMain"> {include file="ur_here.htm"}
+  <div id="mainBox" style="padding-top:18px;"> 
+   <!-- {foreach from=$sys_info.folder_exists item=warning} -->
+   <div class="warning">{$warning}</div>
+   <!-- {/foreach} --> 
+   <span id="douApi"></span> 
+   <!-- {if $rec eq 'default'} 管理首页 -->
+   <div class="indexBox">
+    <div class="boxTitle">{$lang.title_page}</div>
+    <ul class="ipage">
+     <!-- {foreach from=$page_list item=page_list} --> 
+     <a href="page.php?rec=edit&id={$page_list.id}"{if $page_list.level gt 0} class="child{$page_list.level}"{/if}>{$page_list.page_name}</a> 
+     <!-- {/foreach} -->
+     <div class="clear"></div>
+    </ul>
+   </div>
+   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="indexBoxTwo">
+    <tr>
+     <td width="65%" valign="top" class="pr"><div class="indexBox">
+       <div class="boxTitle">{$lang.title_site_info}</div>
+       <ul>
+        <table width="100%" border="0" cellspacing="0" cellpadding="8" class="tableBasic">
+         <tr>
+          <td width="120">{$lang.num_page}：</td>
+          <td><strong>{$sys_info.num_page}</strong></td>
+          <td width="100">{$lang.num_article}：</td>
+          <td><strong>{$sys_info.num_article}</strong></td>
+         </tr>
+         <tr>
+          <td>{$lang.num_product}：</td>
+          <td><strong>{$sys_info.num_product}</strong></td>
+          <td>{$lang.language}：</td>
+          <td><strong>{$site.language}</strong></td>
+         </tr>
+         <tr>
+          <td>{$lang.rewrite}：</td>
+          <td><strong><!-- {if $site.rewrite} -->{$lang.open}<!-- {else} -->{$lang.close}<a href="system.php" class="cueRed ml">{$lang.open_cue}</a> 
+           <!-- {/if} --></strong></td>
+          <td>{$lang.charset}：</td>
+          <td><strong>{$sys_info.charset}</strong></td>
+         </tr>
+         <tr>
+          <td>{$lang.if_sitemap}：</td>
+          <td><strong><!-- {if $site.sitemap} -->{$lang.open}<!-- {else} -->{$lang.close}<!-- {/if} --></strong></td>
+          <td>{$lang.site_theme}：</td>
+          <td><strong>{$site.site_theme}</strong></td>
+         </tr>
+         <tr>
+          <td>{$lang.dou_version}：</td>
+          <td><strong>{$site.douphp_version}</strong></td>
+          <td>{$lang.build_date}：</td>
+          <td><strong>{$sys_info.build_date}</strong></td>
+         </tr>
+         <tr>
+          <td height="45" colspan="4" align="center" valign="top"><table border="0" cellspacing="0" cellpadding="0" class="tableNobor">
+            <tr>
+             <td width="30" valign="middle">{$lang.site_logo}</td>
+             <td valign="middle"><img src="{$sys_info.logo}" height="42"></td>
+            </tr>
+           </table></td>
+         </tr>
+        </table>
+       </ul>
+      </div></td>
+     <td valign="top" class="pl"><div class="indexBox">
+       <div class="boxTitle">{$lang.title_admin_log}</div>
+       <ul>
+        <table width="100%" border="0" cellspacing="0" cellpadding="6" class="tableBasic">
+         <tr>
+          <th width="45%">{$lang.manager_log_ip}</th>
+          <th width="55%">{$lang.manager_log_create_time}</th>
+         </tr>
+         <!-- {foreach from=$log_list item=log_list} -->
+         <tr>
+          <td align="center">{$log_list.ip}</td>
+          <td align="center">{$log_list.create_time}</td>
+         </tr>
+         <!-- {/foreach} -->
+        </table>
+       </ul>
+      </div></td>
+    </tr>
+   </table>
+   <div class="indexBox">
+    <div class="boxTitle">{$lang.title_sys_info}</div>
+    <ul>
+     <table width="100%" border="0" cellspacing="0" cellpadding="8" class="tableBasic">
+      <tr>
+       <td width="120">{$lang.os}</td>
+       <td>{$sys_info.os} ({$sys_info.ip})</td>
+       <td width="100">{$lang.web_server}</td>
+       <td>{$sys_info.web_server}</td>
+      </tr>
+      <tr>
+       <td>{$lang.php_version}</td>
+       <td>{$sys_info.php_ver}</td>
+       <td>{$lang.mysql_version}</td>
+       <td>{$sys_info.mysql_ver}</td>
+      </tr>
+      <tr>
+       <td>{$lang.safe_mode}</td>
+       <td>{$sys_info.safe_mode}</td>
+       <td>{$lang.safe_mode_gid}</td>
+       <td>{$sys_info.safe_mode_gid}</td>
+      </tr>
+      <tr>
+       <td>{$lang.socket}</td>
+       <td>{$sys_info.socket}</td>
+       <td>{$lang.timezone}</td>
+       <td>{$sys_info.timezone}</td>
+      </tr>
+      <tr>
+       <td>{$lang.gd_version}</td>
+       <td>{$sys_info.gd}</td>
+       <td>{$lang.zlib}</td>
+       <td>{$sys_info.zlib}</td>
+      </tr>
+      <tr>
+       <td>{$lang.max_filesize}</td>
+       <td>{$sys_info.max_filesize}</td>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
+      </tr>
+     </table>
+    </ul>
+   </div>
+   <!-- {/if} --> 
+   <!-- {if $rec eq 'about'} 关于我们 -->
+   <div class="indexBox about">
+    <div class="boxTitle">{$lang.title_about}</div>
+    <ul>
+     <table width="100%" border="0" cellspacing="0" cellpadding="6" class="tableBasic">
+      <tr>
+       <td>{$lang.title_about_content}</td>
+      </tr>
+     </table>
+    </ul>
+   </div>
+   <div class="indexBox" style="margin-bottom:30px;">
+    <div class="boxTitle">{$lang.title_contributor}</div>
+    <ul>
+     <table width="100%" border="0" cellspacing="0" cellpadding="6" class="tableBasic">
+      <tr>
+       <td width="100"> Wooyun： </td>
+       <td><a href="http://www.wooyun.org" target="_blank">www.wooyun.org</a></td>
+      </tr>
+      <tr>
+       <td> Phper： </td>
+       <td> Pany, Tea</td>
+      </tr>
+     </table>
+    </ul>
+   </div>
+   <div class="indexBox">
+    <div class="boxTitle">{$lang.title_official}</div>
+    <ul>
+     <table width="100%" border="0" cellspacing="0" cellpadding="6" class="tableBasic">
+      <tr>
+       <td width="100"> {$lang.about_site}： </td>
+       <td><a href="http://www.douco.com" target="_blank">http://www.douco.com</a></td>
+      </tr>
+      <tr>
+       <td> {$lang.about_bbs}： </td>
+       <td><a href="http://bbs.douco.cn" target="_blank">http://bbs.douco.cn </a>（<a href="http://bbs.douco.com/forum-38-1.html" target="_blank">{$lang.about_bbs_a}</a> <a href="http://bbs.douco.com/forum-39-1.html" target="_blank">{$lang.about_bbs_b}</a> <a href="http://bbs.douco.com/forum-40-1.html" target="_blank">{$lang.about_bbs_c}</a> <a href="http://bbs.douco.com/forum-42-1.html" target="_blank">{$lang.about_bbs_d}</a>）</td>
+      </tr>
+      <tr>
+       <td> {$lang.about_download}： </td>
+       <td><a href="http://www.douco.com/download.html" target="_blank">http://www.douco.com/download.html</a></td>
+      </tr>
+      <tr>
+       <td> {$lang.about_email}： </td>
+       <td> hi@douco.com</td>
+      </tr>
+      <tr>
+       <td> {$lang.about_service}： </td>
+       <td><a href="http://www.douco.com/design.html" target="_blank">{$lang.about_design}</a> <a href="http://www.douco.com/develop.html" target="_blank">{$lang.about_develop}</a></td>
+      </tr>
+     </table>
+    </ul>
+   </div>
+   <!-- {/if} --> 
+  </div>
+ </div>
+ {include file="footer.htm"} </div>
+</body>
+</html>
